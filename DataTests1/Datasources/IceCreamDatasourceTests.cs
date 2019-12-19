@@ -1,18 +1,22 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using IceCreamDesktop.Data.Datasources;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using IceCreamDesktop.Core.Entities;
 
-namespace IceCreamDesktop.Data.Models.Tests
+namespace IceCreamDesktop.Data.Datasources.Tests
 {
     [TestClass()]
-    public class IceCreamModelTests
+    public class IceCreamDatasourceTests
     {
         [TestMethod()]
         public void FindAllTest()
         {
-            IceCreamModel iceCreamModel = new IceCreamModel();
-            List<IceCream> result = iceCreamModel.FindAll();
+            IceCreamDatasource iceCreamDatasource = new IceCreamDatasource();
+            List<IceCream> result = iceCreamDatasource.FindAll();
 
             foreach (IceCream iceCream in result)
             {
@@ -26,8 +30,8 @@ namespace IceCreamDesktop.Data.Models.Tests
         [TestMethod()]
         public void FindByIdTest()
         {
-            IceCreamModel iceCreamModel = new IceCreamModel();
-            IceCream result = iceCreamModel.FindById("1");
+            IceCreamDatasource iceCreamDatasource = new IceCreamDatasource();
+            IceCream result = iceCreamDatasource.FindById("1");
 
             Console.WriteLine(result.Id);
             Console.WriteLine(result.Name);

@@ -1,4 +1,4 @@
-﻿using IceCreamDesktop.Presentation.ViewModels.Controls;
+﻿using IceCreamDesktop.Presentation.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,10 +23,6 @@ namespace IceCreamDesktop.Presentation.Views
     {
         public MainWindow()
         {
-            var viewModel = new IceCreamItemViewModel();
-            viewModel.ImageUrl = "https://www.foodbev.com/wp-content/uploads/2019/07/Froneri.png";
-
-            DataContext = viewModel;
             InitializeComponent();
         }
     }

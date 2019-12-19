@@ -1,7 +1,7 @@
 ﻿using IceCreamDesktop.Core.Entities;
 using IceCreamDesktop.Core.Failures;
 using IceCreamDesktop.Data.Interfaces;
-using IceCreamDesktop.Data.Models;
+using IceCreamDesktop.Data.Datasources;
 using IceCreamDesktop.Domain.Interfaces;
 using Monad;
 using System;
@@ -11,9 +11,9 @@ namespace IceCreamDesktop.Data.Repositories
 {
     public class IceCreamRepository : IIceCreamRepository
     {
-        private IModel<IceCream> IceCreamModel;
+        private IDatasource<IceCream> IceCreamModel;
 
-        public IceCreamRepository(IModel<IceCream> iceCreamModel)
+        public IceCreamRepository(IDatasource<IceCream> iceCreamModel)
         {
             IceCreamModel = iceCreamModel;
         }

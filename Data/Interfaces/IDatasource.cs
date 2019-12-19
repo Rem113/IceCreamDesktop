@@ -2,7 +2,7 @@
 
 namespace IceCreamDesktop.Data.Interfaces
 {
-    public interface IModel<Type>
+    public interface IDatasource<Type>
     {
         List<Type> FindAll();
         Type FindById();

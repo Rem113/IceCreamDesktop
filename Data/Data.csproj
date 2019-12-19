@@ -42,8 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\IModel.cs" />
-    <Compile Include="Models\IceCreamModel.cs" />
+    <Compile Include="Interfaces\IDatasource.cs" />
+    <Compile Include="Datasources\IceCreamDatasource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IceCreamRepository.cs" />
   </ItemGroup>

@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IceCreamDesktop.Data.Repositories;
-using IceCreamDesktop.Data.Models;
 using Monad;
 using IceCreamDesktop.Core.Entities;
+using IceCreamDesktop.Data.Datasources;
 
 namespace IceCreamDesktop.Domain.Usecases.Tests
 {
@@ -18,8 +18,8 @@ namespace IceCreamDesktop.Domain.Usecases.Tests
         [TestMethod()]
         public void CallTest()
         {
-            IceCreamModel iceCreamModel = new IceCreamModel();
-            IceCreamRepository iceCreamRepository = new IceCreamRepository(iceCreamModel);
+            IceCreamDatasource iceCreamDatasource = new IceCreamDatasource();
+            IceCreamRepository iceCreamRepository = new IceCreamRepository(iceCreamDatasource);
             GetAllIceCream getAllIceCream = new GetAllIceCream(iceCreamRepository);
             GetAllIceCreamArgs args = new GetAllIceCreamArgs();
 
