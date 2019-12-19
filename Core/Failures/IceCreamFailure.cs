@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 
 namespace IceCreamDesktop.Core.Failures
 {
-    public class StoreFailure : Failure
+    public class IceCreamFailure : Failure
     {
-        public StoreFailure(string message) : base(message)
+        public string Message { get; }
+
+        public IceCreamFailure(string message)
         {
+            Message = message;
         }
     }
 }

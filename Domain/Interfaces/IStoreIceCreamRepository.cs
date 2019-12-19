@@ -5,7 +5,7 @@ using IceCreamDesktop.Core.Failures;
 
 namespace IceCreamDesktop.Domain.Interfaces
 {
-    interface IStoreIceCreamRepository
+    public interface IStoreIceCreamRepository
     {
         Task<Either<Failure, Store>> AddStoreIceCream(string storeId, StoreIceCream storeIceCream);
         Task<Either<Failure, Store>> UpdateStoreIceCream(string storeId, string storeIceCreamId, StoreIceCream storeIceCream);

@@ -2,13 +2,15 @@
 using Monad;
 using IceCreamDesktop.Core.Entities;
 using IceCreamDesktop.Core.Failures;
+using System.Collections.Generic;
 
 namespace IceCreamDesktop.Domain.Interfaces
 {
-    interface IStoreRepository
+    public interface IStoreRepository
     {
-        Task<Either<Failure, Store>> AddStore(Store store);
-        Task<Either<Failure, Store>> UpdateStore(string storeId, Store store);
-        Task<Option<Failure>> RemoveStore(string storeId);
+        Either<StoreFailure, Store> AddStore(Store store);
+        Either<StoreFailure, Store> UpdateStore(string storeId, Store store);
+        Option<StoreFailure> RemoveStore(string storeId);
+        List<Store> GetAllStore();
     }
 }

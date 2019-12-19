@@ -44,9 +44,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IIceCreamRepository.cs" />
     <Compile Include="Interfaces\IStoreRepository.cs" />
     <Compile Include="Interfaces\IStoreIceCreamRepository.cs" />
+    <Compile Include="Interfaces\IUsecase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Usecases\IceCream\GetAllIceCream.cs" />
+    <Compile Include="Usecases\Store\AddStore.cs" />
+    <Compile Include="Usecases\Store\GetAllStore.cs" />
+    <Compile Include="Usecases\Store\RemoveStore.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">
