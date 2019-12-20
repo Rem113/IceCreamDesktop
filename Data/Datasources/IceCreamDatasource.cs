@@ -62,14 +62,30 @@ namespace IceCreamDesktop.Data.Datasources
             return result;
         }
 
-        public IceCream FindById()
-        {
-            throw new System.NotImplementedException();
-        }
-
         public IceCream Create(IceCream data)
         {
-            throw new System.NotImplementedException();
+            IceCream result;
+
+            using (SqlConnection connection = new SqlConnection(ConnectionUrl))
+            {
+                connection.Open();
+
+                if (!string.IsNullOrWhiteSpace(data.Id))
+                {
+                    IceCream iceCream = FindById(data.Id);
+
+                    if (iceCream != null) throw new ArgumentException("There is already an ice cream associated with this id");
+                }
+
+                SqlCommand command = new SqlCommand($"INSERT INTO {TableName} OUTPUT Inserted.Id VALUES ('{data.Name}', '{data.Brand}', '{data.ImageUrl}')", connection);
+
+                // Gets the id of the previously inserted ice cream
+                string newId = command.ExecuteScalar().ToString();
+
+                result = new IceCream(newId, data.Name, data.Brand, data.ImageUrl);
+            }
+
+            return result;
         }
 
         public IceCream Update(string id, IceCream data)

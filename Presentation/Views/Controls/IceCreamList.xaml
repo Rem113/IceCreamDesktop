@@ -7,8 +7,8 @@
     <ListView ItemsSource="{Binding IceCreams}">
         <ListView.ItemTemplate>
             <DataTemplate>
-                <StackPanel>
-                    <Image Source="{Binding ImageUrl}" Width="100" />
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="{Binding ImageUrl}" Width="100" Height="100" />
                     <TextBlock Text="{Binding Name}" />
                 </StackPanel>
             </DataTemplate>

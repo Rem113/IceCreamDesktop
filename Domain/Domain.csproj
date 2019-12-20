@@ -49,6 +49,7 @@
     <Compile Include="Interfaces\IStoreIceCreamRepository.cs" />
     <Compile Include="Interfaces\IUsecase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Usecases\IceCream\AddIceCream.cs" />
     <Compile Include="Usecases\IceCream\GetAllIceCream.cs" />
     <Compile Include="Usecases\Store\AddStore.cs" />
     <Compile Include="Usecases\Store\GetAllStore.cs" />

@@ -11,18 +11,30 @@ namespace IceCreamDesktop.Data.Repositories
 {
     public class IceCreamRepository : IIceCreamRepository
     {
-        private IDatasource<IceCream> IceCreamModel;
+        private IDatasource<IceCream> IceCreamDatasource;
 
-        public IceCreamRepository(IDatasource<IceCream> iceCreamModel)
+        public IceCreamRepository(IDatasource<IceCream> iceCreamDatasource)
         {
-            IceCreamModel = iceCreamModel;
+            IceCreamDatasource = iceCreamDatasource;
+        }
+
+        public Either<IceCreamFailure, IceCream> AddIceCream(IceCream iceCream)
+        {
+            try
+            {
+                IceCream result = IceCreamDatasource.Create(iceCream);
+                return () => result;
+            } catch (Exception)
+            {
+                return () => new IceCreamFailure("Could not add a new ice cream");
+            }
         }
 
         public Either<IceCreamFailure, List<IceCream>> GetAllIceCream()
         {
             try
             {
-                List<IceCream> result = IceCreamModel.FindAll();
+                List<IceCream> result = IceCreamDatasource.FindAll();
                 return () => result;
             }
             catch (Exception)

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IceCreamDesktop.Core.Failures
 {
-    public class IceCreamFailure : Failure
+    public class IceCreamFailure
     {
         public string Message { get; }
 

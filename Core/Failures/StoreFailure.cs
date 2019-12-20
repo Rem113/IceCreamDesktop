@@ -1,6 +1,6 @@
 ﻿namespace IceCreamDesktop.Core.Failures
 {
-    public class StoreFailure : Failure
+    public class StoreFailure
     {
         public string Message { get; }
 

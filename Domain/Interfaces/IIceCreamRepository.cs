@@ -8,5 +8,6 @@ namespace IceCreamDesktop.Domain.Interfaces
     public interface IIceCreamRepository
     {
         Either<IceCreamFailure, List<IceCream>> GetAllIceCream();
+        Either<IceCreamFailure, IceCream> AddIceCream(IceCream iceCream);
     }
 }

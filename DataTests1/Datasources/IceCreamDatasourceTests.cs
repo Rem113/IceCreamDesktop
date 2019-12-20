@@ -38,5 +38,15 @@ namespace IceCreamDesktop.Data.Datasources.Tests
             Console.WriteLine(result.Brand);
             Console.WriteLine(result.ImageUrl);
         }
+
+        [TestMethod()]
+        public void CreateTest()
+        {
+            IceCream newIceCream = new IceCream("Vanilla", "Crunch", "https://www.osem.co.il/tm-content/uploads/2014/12/crunchVanilla-308x308.png");
+            IceCreamDatasource iceCreamDatasource = new IceCreamDatasource();
+            IceCream result = iceCreamDatasource.Create(newIceCream);
+
+            Assert.IsNotNull(result.Id);
+        }
     }
 }
