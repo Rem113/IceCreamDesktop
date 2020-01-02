@@ -8,9 +8,9 @@ namespace IceCreamDesktop.Domain.Interfaces
 {
     public interface IStoreRepository
     {
-        Either<StoreFailure, Store> AddStore(Store store);
-        Either<StoreFailure, Store> UpdateStore(string storeId, Store store);
-        Option<StoreFailure> RemoveStore(string storeId);
-        List<Store> GetAllStore();
+        Task<Either<Failure, Store>> AddStore(Store store);
+        Task<Either<Failure, Store>> UpdateStore(string storeId, Store store);
+        Task<Option<Failure>> RemoveStore(string storeId);
+        Task<List<Store>> GetAllStore();
     }
 }

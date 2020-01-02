@@ -11,19 +11,9 @@ namespace IceCreamDesktop.Core.Entities
         public string Description { get; set; }
         public string BarCode { get; set; }
 
-        public StoreIceCream(string id, string storeId, float price, Ratings rating, string description, string barCode)
+        public StoreIceCream(string storeId, float price, Ratings rating, string description, string barCode, string id = null)
         {
             Id = id;
-            StoreId = storeId;
-            Price = price;
-            Rating = rating;
-            Description = description;
-            BarCode = barCode;
-        }
-
-        public StoreIceCream(string storeId, float price, Ratings rating, string description, string barCode)
-        {
-            Id = null;
             StoreId = storeId;
             Price = price;
             Rating = rating;

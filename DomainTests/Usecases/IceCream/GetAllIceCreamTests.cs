@@ -1,14 +1,13 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using IceCreamDesktop.Domain.Usecases;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using IceCreamDesktop.Data.Repositories;
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Monad;
+using Telerik.JustMock;
+
 using IceCreamDesktop.Core.Entities;
-using IceCreamDesktop.Data.Datasources;
+using IceCreamDesktop.Domain.Interfaces;
+using IceCreamDesktop.Core.Failures;
 
 namespace IceCreamDesktop.Domain.Usecases.Tests
 {
@@ -16,24 +15,33 @@ namespace IceCreamDesktop.Domain.Usecases.Tests
     public class GetAllIceCreamTests
     {
         [TestMethod()]
-        public void CallTest()
+        public async Task CallTest()
         {
-            IceCreamDatasource iceCreamDatasource = new IceCreamDatasource();
-            IceCreamRepository iceCreamRepository = new IceCreamRepository(iceCreamDatasource);
+            IIceCreamRepository iceCreamRepository = Mock.Create<IIceCreamRepository>();
+
+            IceCream tIceCream = new IceCream(name: "Extreme", brand: "Nestle", imageUrl: "google.fr");
+
+            Mock
+                .Arrange(() => iceCreamRepository.GetAllIceCream())
+                .Returns(Task.FromResult<Either<Failure, List<IceCream>>>(() => new List<IceCream> { tIceCream }));
+
             GetAllIceCream getAllIceCream = new GetAllIceCream(iceCreamRepository);
-            GetAllIceCreamArgs args = new GetAllIceCreamArgs();
 
-            var result = getAllIceCream.Call(args);
+            var result = await getAllIceCream.Call(new GetAllIceCreamArgs());
 
-            if (result.IsLeft()) Assert.Fail(result.Left().Message);
-
-            foreach (IceCream iceCream in result.Right())
-            {
-                Console.WriteLine($"Id: {iceCream.Id}");
-                Console.WriteLine($"Name: {iceCream.Name}");
-                Console.WriteLine($"Brand: {iceCream.Brand}");
-                Console.WriteLine($"ImageUrl: {iceCream.ImageUrl}");
-            }
+            result.Match(
+                Left: failure =>
+                {
+                    Assert.Fail(failure.Message);
+                },
+                Right: response =>
+                {
+                    var iceCreams = response as List<IceCream>;
+                    Assert.AreEqual(iceCreams.Count, 1);
+                    Assert.AreEqual(iceCreams[0], tIceCream);
+                    Mock.GetTimesCalled(() => iceCreamRepository.GetAllIceCream()).Equals(1);
+                }
+            )();
         }
     }
 }

@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Datasources\StoreDatasource.cs" />
     <Compile Include="Interfaces\IDatasource.cs" />
     <Compile Include="Datasources\IceCreamDatasource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

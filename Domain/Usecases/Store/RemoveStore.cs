@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace IceCreamDesktop.Domain.Usecases
 {
-    public class RemoveStore : IUsecase<Option<StoreFailure>, RemoveStoreArgs>
+    public class RemoveStore : IUsecase<Option<Failure>, RemoveStoreArgs>
     {
         private IStoreRepository Repository { get; }
 
@@ -14,7 +14,7 @@ namespace IceCreamDesktop.Domain.Usecases
             Repository = repository;
         }
 
-        public Option<StoreFailure> Call(RemoveStoreArgs args)
+        public Task<Option<Failure>> Call(RemoveStoreArgs args)
         {
             return Repository.RemoveStore(args.StoreId);
         }

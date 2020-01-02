@@ -8,6 +8,7 @@ using IceCreamDesktop.Domain.Usecases;
 using Monad;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,11 +22,11 @@ namespace IceCreamDesktop.Presentation.Models
 
         public IceCreamModel()
         {
-            Datasource = new IceCreamDatasource();
+            Datasource = new IceCreamDatasource(ConfigurationManager.ConnectionStrings[0].ConnectionString);
             Repository = new IceCreamRepository(Datasource);
         }
 
-        public Either<IceCreamFailure, List<IceCream>> GetAllIceCream()
+        public Task<Either<Failure, List<IceCream>>> GetAllIceCream()
         {
             GetAllIceCream getAllIceCream = new GetAllIceCream(Repository);
             return getAllIceCream.Call(new GetAllIceCreamArgs());

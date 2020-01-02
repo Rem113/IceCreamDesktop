@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace IceCreamDesktop.Core.Failures
 {
-    public class IceCreamFailure : Failure
+    public class StoreIceCreamFailure : Failure
     {
-        public IceCreamFailure(string message) : base(message) {}
+        public StoreIceCreamFailure(string message) : base(message) {}
     }
 }

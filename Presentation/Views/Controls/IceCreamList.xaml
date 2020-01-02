@@ -2,16 +2,27 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:MaterialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d">
-    <ListView ItemsSource="{Binding IceCreams}">
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="{Binding ImageUrl}" Width="100" Height="100" />
-                    <TextBlock Text="{Binding Name}" />
-                </StackPanel>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="10, 10, 0, 0">
+        <ItemsControl ItemsSource="{Binding IceCreams}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="4" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <MaterialDesign:Card Margin="0, 0, 10, 10" Height="200">
+                        <DockPanel>
+                            <Image DockPanel.Dock="Top" Source="{Binding ImageUrl}" Height="150" Stretch="Fill" />
+                            <TextBlock DockPanel.Dock="Bottom" Text="{Binding Name}" TextAlignment="Center" VerticalAlignment="Center" />
+                        </DockPanel>
+                    </MaterialDesign:Card>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </ScrollViewer>
 </UserControl>

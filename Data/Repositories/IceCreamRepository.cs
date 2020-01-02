@@ -6,6 +6,7 @@ using IceCreamDesktop.Domain.Interfaces;
 using Monad;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace IceCreamDesktop.Data.Repositories
 {
@@ -18,11 +19,11 @@ namespace IceCreamDesktop.Data.Repositories
             IceCreamDatasource = iceCreamDatasource;
         }
 
-        public Either<IceCreamFailure, IceCream> AddIceCream(IceCream iceCream)
+        public async Task<Either<Failure, IceCream>> AddIceCream(IceCream iceCream)
         {
             try
             {
-                IceCream result = IceCreamDatasource.Create(iceCream);
+                IceCream result = await IceCreamDatasource.Create(iceCream);
                 return () => result;
             } catch (Exception)
             {
@@ -30,11 +31,11 @@ namespace IceCreamDesktop.Data.Repositories
             }
         }
 
-        public Either<IceCreamFailure, List<IceCream>> GetAllIceCream()
+        public async Task<Either<Failure, List<IceCream>>> GetAllIceCream()
         {
             try
             {
-                List<IceCream> result = IceCreamDatasource.FindAll();
+                List<IceCream> result = await IceCreamDatasource.FindAll();
                 return () => result;
             }
             catch (Exception)

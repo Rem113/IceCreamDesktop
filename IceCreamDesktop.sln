@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{31574D4B-A1B6-4A22-B6DA-BF893FAF07BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTests1", "DataTests1\DataTests1.csproj", "{604E761A-F108-4EC9-BC70-2CEFA4CE3538}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTests", "DataTests1\DataTests.csproj", "{604E761A-F108-4EC9-BC70-2CEFA4CE3538}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainTests", "DomainTests\DomainTests.csproj", "{A8D75891-5D67-4522-BD50-1A87E8B6CF48}"
 EndProject

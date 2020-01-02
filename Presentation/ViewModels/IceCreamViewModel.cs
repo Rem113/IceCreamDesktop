@@ -22,23 +22,31 @@ namespace IceCreamDesktop.Presentation.ViewModels
         public IceCreamViewModel()
         {
             Model = new IceCreamModel();
+            IceCreams = new ObservableCollection<IceCream>();
 
-            Either<IceCreamFailure, List<IceCream>> result = Model.GetAllIceCream();
+            GetAllIceCream();
+        }
 
-            if (result.IsLeft())
-            {
-                Failure = result.Left();
-            }
-            else
-            {
-                Failure = null;
-                IceCreams = new ObservableCollection<IceCream>();
+        private async void GetAllIceCream()
+        {
+            Either<Failure, List<IceCream>> result = await Model.GetAllIceCream();
 
-                foreach (IceCream iceCream in result.Right())
+            result.Match(
+                Left: failure =>
                 {
-                    IceCreams.Add(new IceCream(iceCream.Id, iceCream.Name, iceCream.Brand, iceCream.ImageUrl));
+                    if (failure is IceCreamFailure)
+                        Failure = failure as IceCreamFailure;
+                },
+                Right: iceCreams =>
+                {
+                    Failure = null;
+                    
+                    foreach (IceCream iceCream in iceCreams)
+                    {
+                        IceCreams.Add(new IceCream(id: iceCream.Id, name: iceCream.Name, brand: iceCream.Brand, imageUrl: iceCream.ImageUrl));
+                    }
                 }
-            }
+            )();
         }
     }
 }

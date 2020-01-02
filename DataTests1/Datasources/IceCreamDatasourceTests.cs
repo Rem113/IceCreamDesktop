@@ -2,6 +2,7 @@
 using IceCreamDesktop.Data.Datasources;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,11 +13,23 @@ namespace IceCreamDesktop.Data.Datasources.Tests
     [TestClass()]
     public class IceCreamDatasourceTests
     {
+        public readonly string ConnectionString = ConfigurationManager.ConnectionStrings[0].ConnectionString;
+
         [TestMethod()]
-        public void FindAllTest()
+        public async Task CreateTest()
         {
-            IceCreamDatasource iceCreamDatasource = new IceCreamDatasource();
-            List<IceCream> result = iceCreamDatasource.FindAll();
+            IceCream newIceCream = new IceCream("Vanilla", "Crunch", "https://www.osem.co.il/tm-content/uploads/2014/12/crunchVanilla-308x308.png");
+            IceCreamDatasource iceCreamDatasource = new IceCreamDatasource(ConnectionString);
+            IceCream result = await iceCreamDatasource.Create(newIceCream);
+
+            Assert.IsNotNull(result.Id);
+        }
+
+        [TestMethod()]
+        public async Task FindAllTest()
+        {
+            IceCreamDatasource iceCreamDatasource = new IceCreamDatasource(ConnectionString);
+            List<IceCream> result = await iceCreamDatasource.FindAll();
 
             foreach (IceCream iceCream in result)
             {
@@ -28,25 +41,15 @@ namespace IceCreamDesktop.Data.Datasources.Tests
         }
 
         [TestMethod()]
-        public void FindByIdTest()
+        public async Task FindByIdTest()
         {
-            IceCreamDatasource iceCreamDatasource = new IceCreamDatasource();
-            IceCream result = iceCreamDatasource.FindById("1");
+            IceCreamDatasource iceCreamDatasource = new IceCreamDatasource(ConnectionString);
+            IceCream result = await iceCreamDatasource.FindById("1");
 
             Console.WriteLine(result.Id);
             Console.WriteLine(result.Name);
             Console.WriteLine(result.Brand);
             Console.WriteLine(result.ImageUrl);
-        }
-
-        [TestMethod()]
-        public void CreateTest()
-        {
-            IceCream newIceCream = new IceCream("Vanilla", "Crunch", "https://www.osem.co.il/tm-content/uploads/2014/12/crunchVanilla-308x308.png");
-            IceCreamDatasource iceCreamDatasource = new IceCreamDatasource();
-            IceCream result = iceCreamDatasource.Create(newIceCream);
-
-            Assert.IsNotNull(result.Id);
         }
     }
 }

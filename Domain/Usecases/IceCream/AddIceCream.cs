@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace IceCreamDesktop.Domain.Usecases
 {
-    public class AddIceCream : IUsecase<Either<IceCreamFailure, IceCream>, AddIceCreamArgs>
+    public class AddIceCream : IUsecase<Either<Failure, IceCream>, AddIceCreamArgs>
     {
         private IIceCreamRepository Repository;
 
@@ -19,7 +19,7 @@ namespace IceCreamDesktop.Domain.Usecases
             Repository = repository;
         }
 
-        public Either<IceCreamFailure, IceCream> Call(AddIceCreamArgs args)
+        public Task<Either<Failure, IceCream>> Call(AddIceCreamArgs args)
         {
             return Repository.AddIceCream(args.IceCream);
         }

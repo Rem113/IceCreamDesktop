@@ -10,18 +10,9 @@ namespace IceCreamDesktop.Core.Entities
         public Ratings Rating { get; set; }
         public string ImageUrl { get; set; }
         
-        public Review(string id, string storeIceCreamId, string text, Ratings rating, string imageUrl)
+        public Review(string storeIceCreamId, string text, Ratings rating, string imageUrl, string id = null)
         {
             Id = id;
-            StoreIceCreamId = storeIceCreamId;
-            Text = text;
-            Rating = rating;
-            ImageUrl = imageUrl;
-        }
-
-        public Review(string storeIceCreamId, string text, Ratings rating, string imageUrl)
-        {
-            Id = null;
             StoreIceCreamId = storeIceCreamId;
             Text = text;
             Rating = rating;

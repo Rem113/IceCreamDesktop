@@ -15,7 +15,7 @@ namespace IceCreamDesktop.Domain.Usecases
             Repository = repository;
         }
 
-        public List<Store> Call(GetAllStoreArgs args)
+        public Task<List<Store>> Call(GetAllStoreArgs args)
         {
             return Repository.GetAllStore();
         }

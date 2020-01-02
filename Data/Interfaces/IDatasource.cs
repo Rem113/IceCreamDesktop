@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace IceCreamDesktop.Data.Interfaces
 {
     public interface IDatasource<Type>
     {
-        List<Type> FindAll();
-        Type FindById(string id);
-        Type Create(Type data);
-        Type Update(string id, Type data);
-        bool Delete(string id);
+        Task<List<Type>> FindAll();
+        Task<Type> FindById(string id);
+        Task<Type> Create(Type data);
+        Task<Type> Update(string id, Type data);
+        Task<bool> Delete(string id);
     }
 }

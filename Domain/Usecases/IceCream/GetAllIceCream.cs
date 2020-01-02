@@ -3,10 +3,11 @@ using IceCreamDesktop.Core.Failures;
 using IceCreamDesktop.Domain.Interfaces;
 using Monad;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace IceCreamDesktop.Domain.Usecases
 {
-    public class GetAllIceCream : IUsecase<Either<IceCreamFailure, List<IceCream>>, GetAllIceCreamArgs>
+    public class GetAllIceCream : IUsecase<Either<Failure, List<IceCream>>, GetAllIceCreamArgs>
     {
         private IIceCreamRepository Repository;
 
@@ -15,7 +16,7 @@ namespace IceCreamDesktop.Domain.Usecases
             Repository = repository;
         }
 
-        public Either<IceCreamFailure, List<IceCream>> Call(GetAllIceCreamArgs args)
+        public Task<Either<Failure, List<IceCream>>> Call(GetAllIceCreamArgs args)
         {
             return Repository.GetAllIceCream();
         }

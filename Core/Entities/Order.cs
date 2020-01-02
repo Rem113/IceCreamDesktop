@@ -7,15 +7,9 @@ namespace IceCreamDesktop.Core.Entities
         public string Id { get; set; }
         public List<StoreIceCream> OrderedIceCreams { get; set; }
 
-        public Order(string id, List<StoreIceCream> orderedIceCreams)
+        public Order(string id = null, List<StoreIceCream> orderedIceCreams = null)
         {
             Id = id;
-            OrderedIceCreams = orderedIceCreams;
-        }
-
-        public Order(List<StoreIceCream> orderedIceCreams)
-        {
-            Id = null;
             OrderedIceCreams = orderedIceCreams;
         }
     }

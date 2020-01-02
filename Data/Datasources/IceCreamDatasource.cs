@@ -3,15 +3,21 @@ using IceCreamDesktop.Data.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 
 namespace IceCreamDesktop.Data.Datasources
 {
     public class IceCreamDatasource : IDatasource<IceCream>
     {
-        private const string ConnectionUrl = "Server=localhost;Database=icecreamdesktop;Trusted_Connection=True;";
+        private string ConnectionUrl { get; set; }
         private const string TableName = "IceCream";
 
-        public IceCream FindById(string iceCreamId)
+        public IceCreamDatasource(string connectionUrl)
+        {
+            ConnectionUrl = connectionUrl;
+        }
+
+        public Task<IceCream> FindById(string iceCreamId)
         {
             string id, name, brand, imageUrl;
 
@@ -32,10 +38,10 @@ namespace IceCreamDesktop.Data.Datasources
                 }
             }
 
-            return new IceCream(id, name, brand, imageUrl);
+            return Task.FromResult<IceCream>(new IceCream(id: id, name: name, brand: brand, imageUrl: imageUrl));
         }
 
-        public List<IceCream> FindAll()
+        public Task<List<IceCream>> FindAll()
         {
             List<IceCream> result = new List<IceCream>();
 
@@ -53,16 +59,16 @@ namespace IceCreamDesktop.Data.Datasources
                         string brand = reader.GetString(2);
                         string imageUrl = reader.GetString(3);
 
-                        IceCream iceCream = new IceCream(id, name, brand, imageUrl);
+                        IceCream iceCream = new IceCream(id: id, name: name, brand: brand, imageUrl: imageUrl);
                         result.Add(iceCream);
                     }
                 }
             }
 
-            return result;
+            return Task.FromResult(result);
         }
 
-        public IceCream Create(IceCream data)
+        public async Task<IceCream> Create(IceCream data)
         {
             IceCream result;
 
@@ -72,7 +78,7 @@ namespace IceCreamDesktop.Data.Datasources
 
                 if (!string.IsNullOrWhiteSpace(data.Id))
                 {
-                    IceCream iceCream = FindById(data.Id);
+                    IceCream iceCream = await FindById(data.Id);
 
                     if (iceCream != null) throw new ArgumentException("There is already an ice cream associated with this id");
                 }
@@ -82,18 +88,18 @@ namespace IceCreamDesktop.Data.Datasources
                 // Gets the id of the previously inserted ice cream
                 string newId = command.ExecuteScalar().ToString();
 
-                result = new IceCream(newId, data.Name, data.Brand, data.ImageUrl);
+                result = new IceCream(id: newId, name: data.Name, brand: data.Brand, imageUrl: data.ImageUrl);
             }
 
             return result;
         }
 
-        public IceCream Update(string id, IceCream data)
+        public Task<IceCream> Update(string id, IceCream data)
         {
             throw new System.NotImplementedException();
         }
 
-        public bool Delete(string id)
+        public Task<bool> Delete(string id)
         {
             throw new System.NotImplementedException();
         }

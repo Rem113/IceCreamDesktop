@@ -12,20 +12,9 @@ namespace IceCreamDesktop.Core.Entities
         public string Website { get; set; }
         public List<StoreIceCream> IceCreams { get; set; }
 
-        public Store(string id, string name, string address, string imageUrl, string telephone, string website, List<StoreIceCream> iceCreams)
+        public Store(string name, string address, string imageUrl, string telephone, string website, string id = null, List<StoreIceCream> iceCreams = null)
         {
             Id = id;
-            Name = name;
-            Address = address;
-            ImageUrl = imageUrl;
-            Telephone = telephone;
-            Website = website;
-            IceCreams = iceCreams;
-        }
-
-        public Store(string name, string address, string imageUrl, string telephone, string website, List<StoreIceCream> iceCreams)
-        {
-            Id = null;
             Name = name;
             Address = address;
             ImageUrl = imageUrl;

@@ -2,12 +2,13 @@
 using IceCreamDesktop.Core.Failures;
 using Monad;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace IceCreamDesktop.Domain.Interfaces
 {
     public interface IIceCreamRepository
     {
-        Either<IceCreamFailure, List<IceCream>> GetAllIceCream();
-        Either<IceCreamFailure, IceCream> AddIceCream(IceCream iceCream);
+        Task<Either<Failure, List<IceCream>>> GetAllIceCream();
+        Task<Either<Failure, IceCream>> AddIceCream(IceCream iceCream);
     }
 }

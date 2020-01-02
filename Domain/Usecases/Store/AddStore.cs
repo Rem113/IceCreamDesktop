@@ -2,10 +2,11 @@
 using IceCreamDesktop.Core.Failures;
 using IceCreamDesktop.Domain.Interfaces;
 using Monad;
+using System.Threading.Tasks;
 
 namespace IceCreamDesktop.Domain.Usecases
 {
-    public class AddStore : IUsecase<Either<StoreFailure, Store>, AddStoreArgs>
+    public class AddStore : IUsecase<Either<Failure, Store>, AddStoreArgs>
     {
         private IStoreRepository Repository { get; }
 
@@ -14,7 +15,7 @@ namespace IceCreamDesktop.Domain.Usecases
             Repository = repository;
         }
 
-        public Either<StoreFailure, Store> Call(AddStoreArgs args)
+        public Task<Either<Failure, Store>> Call(AddStoreArgs args)
         {
             return Repository.AddStore(args.Store);
         }
