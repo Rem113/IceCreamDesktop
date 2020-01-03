@@ -1,6 +1,5 @@
 ﻿using IceCreamDesktop.Core.Entities;
 using IceCreamDesktop.Domain.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

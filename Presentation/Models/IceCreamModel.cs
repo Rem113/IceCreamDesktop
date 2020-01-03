@@ -6,11 +6,8 @@ using IceCreamDesktop.Data.Repositories;
 using IceCreamDesktop.Domain.Interfaces;
 using IceCreamDesktop.Domain.Usecases;
 using Monad;
-using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace IceCreamDesktop.Presentation.Models

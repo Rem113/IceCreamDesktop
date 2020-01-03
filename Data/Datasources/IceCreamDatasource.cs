@@ -1,6 +1,6 @@
 ﻿using IceCreamDesktop.Core.Entities;
+using IceCreamDesktop.Core.Exceptions;
 using IceCreamDesktop.Data.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
@@ -29,7 +29,7 @@ namespace IceCreamDesktop.Data.Datasources
                 using (SqlDataReader reader = query.ExecuteReader())
                 {
                     if (!reader.Read())
-                        return null;
+                        throw new NotFoundException("There is no ice cream associated to this id");
 
                     id = reader.GetInt32(0).ToString();
                     name = reader.GetString(1);
@@ -38,7 +38,7 @@ namespace IceCreamDesktop.Data.Datasources
                 }
             }
 
-            return Task.FromResult<IceCream>(new IceCream(id: id, name: name, brand: brand, imageUrl: imageUrl));
+            return Task.FromResult(new IceCream(id: id, name: name, brand: brand, imageUrl: imageUrl));
         }
 
         public Task<List<IceCream>> FindAll()
@@ -68,7 +68,7 @@ namespace IceCreamDesktop.Data.Datasources
             return Task.FromResult(result);
         }
 
-        public async Task<IceCream> Create(IceCream data)
+        public Task<IceCream> Create(IceCream data)
         {
             IceCream result;
 
@@ -76,32 +76,56 @@ namespace IceCreamDesktop.Data.Datasources
             {
                 connection.Open();
 
-                if (!string.IsNullOrWhiteSpace(data.Id))
-                {
-                    IceCream iceCream = await FindById(data.Id);
+                string sql = $"INSERT INTO {TableName} OUTPUT Inserted.Id VALUES ('{data.Name}', '{data.Brand}', '{data.ImageUrl}')";
 
-                    if (iceCream != null) throw new ArgumentException("There is already an ice cream associated with this id");
-                }
-
-                SqlCommand command = new SqlCommand($"INSERT INTO {TableName} OUTPUT Inserted.Id VALUES ('{data.Name}', '{data.Brand}', '{data.ImageUrl}')", connection);
-
+                using SqlCommand command = new SqlCommand(sql, connection);
                 // Gets the id of the previously inserted ice cream
                 string newId = command.ExecuteScalar().ToString();
 
                 result = new IceCream(id: newId, name: data.Name, brand: data.Brand, imageUrl: data.ImageUrl);
             }
 
-            return result;
+            return Task.FromResult(result);
         }
 
         public Task<IceCream> Update(string id, IceCream data)
         {
-            throw new System.NotImplementedException();
+            IceCream result;
+
+            using (SqlConnection connection = new SqlConnection(ConnectionUrl))
+            {
+                connection.Open();
+
+                string sql = $"UPDATE {TableName} " +
+                    $"SET Name = '{data.Name}', Brand = '{data.Brand}', ImageUrl = '{data.ImageUrl}'" +
+                    $"WHERE Id = {id}";
+
+                using SqlCommand command = new SqlCommand(sql, connection);
+                var affectedRows = command.ExecuteNonQuery();
+
+                if (affectedRows == 0) throw new NotFoundException("There is no ice cream associated to this id");
+
+                result = new IceCream(id: id, name: data.Name, brand: data.Brand, imageUrl: data.ImageUrl);
+            }
+
+            return Task.FromResult(result);
         }
 
-        public Task<bool> Delete(string id)
+        public Task Delete(string id)
         {
-            throw new System.NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(ConnectionUrl))
+            {
+                connection.Open();
+
+                string sql = $"DELETE FROM {TableName} WHERE Id = {id}";
+
+                using SqlCommand command = new SqlCommand(sql, connection);
+                var affectedRows = command.ExecuteNonQuery();
+
+                if (affectedRows == 0) throw new NotFoundException("There is no ice cream associated to this id");
+            }
+
+            return Task.CompletedTask;
         }
     }
 }

@@ -3,8 +3,6 @@ using IceCreamDesktop.Data.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace IceCreamDesktop.Data.Datasources
@@ -45,7 +43,7 @@ namespace IceCreamDesktop.Data.Datasources
             return result;
         }
 
-        public Task<bool> Delete(string id)
+        public Task Delete(string id)
         {
             throw new NotImplementedException();
         }

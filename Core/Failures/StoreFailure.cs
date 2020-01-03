@@ -2,6 +2,8 @@
 {
     public class StoreFailure : Failure
     {
-        public StoreFailure(string message) : base(message) {}
+        public StoreFailure(string message) : base(message)
+        {
+        }
     }
 }

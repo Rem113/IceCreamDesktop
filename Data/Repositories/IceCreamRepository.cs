@@ -1,7 +1,6 @@
 ﻿using IceCreamDesktop.Core.Entities;
 using IceCreamDesktop.Core.Failures;
 using IceCreamDesktop.Data.Interfaces;
-using IceCreamDesktop.Data.Datasources;
 using IceCreamDesktop.Domain.Interfaces;
 using Monad;
 using System;
@@ -25,7 +24,8 @@ namespace IceCreamDesktop.Data.Repositories
             {
                 IceCream result = await IceCreamDatasource.Create(iceCream);
                 return () => result;
-            } catch (Exception)
+            }
+            catch (Exception)
             {
                 return () => new IceCreamFailure("Could not add a new ice cream");
             }

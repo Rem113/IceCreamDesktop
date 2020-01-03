@@ -14,6 +14,6 @@
         TextElement.FontSize="14"
         FontFamily="{MaterialDesign:MaterialDesignFont}">
     <Canvas>
-        <Controls:IceCreamList Width="900" Height="600" />
+       <Controls:IceCreamList Width="900" Height="600" />
     </Canvas>
 </Window>

@@ -7,5 +7,5 @@ namespace IceCreamDesktop.Domain.Interfaces
         Task<Type> Call(IArgs args);
     }
 
-    public interface IArgs {};
+    public interface IArgs { };
 }
