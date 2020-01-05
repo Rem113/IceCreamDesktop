@@ -76,7 +76,9 @@ namespace IceCreamDesktop.Data.Datasources
             {
                 connection.Open();
 
-                string sql = $"INSERT INTO {TableName} OUTPUT Inserted.Id VALUES ('{data.Name}', '{data.Brand}', '{data.ImageUrl}')";
+                string sql = $"INSERT INTO {TableName} " +
+                    $"OUTPUT Inserted.Id " +
+                    $"VALUES ('{data.Name}', '{data.Brand}', '{data.ImageUrl}')";
 
                 using SqlCommand command = new SqlCommand(sql, connection);
                 // Gets the id of the previously inserted ice cream

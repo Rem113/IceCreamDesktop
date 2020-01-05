@@ -9,7 +9,7 @@ namespace IceCreamDesktop.Domain.Usecases
 {
     public class GetAllIceCream : IUsecase<Either<Failure, List<IceCream>>, GetAllIceCreamArgs>
     {
-        private IIceCreamRepository Repository;
+        private readonly IIceCreamRepository Repository;
 
         public GetAllIceCream(IIceCreamRepository repository)
         {

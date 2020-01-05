@@ -12,7 +12,7 @@ using Xunit.Sdk;
 namespace IceCreamDesktop.Data.Datasources.Tests
 {
     [Collection("IceCreamDatasource")]
-    public class IceCreamDatasourceTest
+    public class IceCreamDatasourceTests
     {
         public static readonly string ConnectionString = ConfigurationManager.ConnectionStrings[0].ConnectionString;
 
@@ -32,7 +32,7 @@ namespace IceCreamDesktop.Data.Datasources.Tests
         );
 
         [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
-        private class ClearIceCreamDBBefore : BeforeAfterTestAttribute
+        private class ClearIceCreamDBAfter : BeforeAfterTestAttribute
         {
             public override void After(MethodInfo methodUnderTest)
             {
@@ -46,7 +46,7 @@ namespace IceCreamDesktop.Data.Datasources.Tests
             }
         }
 
-        [ClearIceCreamDBBefore()]
+        [ClearIceCreamDBAfter()]
         [Trait("Method", "Create")]
         [Fact(DisplayName = "Should create a new id when necessary")]
         public async Task CreateTest1()
@@ -61,7 +61,7 @@ namespace IceCreamDesktop.Data.Datasources.Tests
             Assert.Equal(TNoIdIceCream.ImageUrl, result.ImageUrl);
         }
 
-        [ClearIceCreamDBBefore()]
+        [ClearIceCreamDBAfter()]
         [Trait("Method", "FindById")]
         [Fact(DisplayName = "Should return the ice cream when the id exists")]
         public async Task FindByIdTest1()
@@ -77,7 +77,7 @@ namespace IceCreamDesktop.Data.Datasources.Tests
             Assert.Equal(createdIceCream.Id, result.Id);
         }
 
-        [ClearIceCreamDBBefore()]
+        [ClearIceCreamDBAfter()]
         [Trait("Method", "FindById")]
         [Fact(DisplayName = "Should throw an exception when the id does not exist")]
         public async Task FindByIdTest2()
@@ -89,7 +89,7 @@ namespace IceCreamDesktop.Data.Datasources.Tests
             await Assert.ThrowsAsync<NotFoundException>(func);
         }
 
-        [ClearIceCreamDBBefore()]
+        [ClearIceCreamDBAfter()]
         [Trait("Method", "FindAll")]
         [Fact(DisplayName = "Should return an empty list when there are no ice creams")]
         public async Task FindAllTest1()
@@ -101,7 +101,7 @@ namespace IceCreamDesktop.Data.Datasources.Tests
             Assert.Empty(result);
         }
 
-        [ClearIceCreamDBBefore()]
+        [ClearIceCreamDBAfter()]
         [Trait("Method", "FindAll")]
         [Fact(DisplayName = "Should return all the ice creams when present")]
         public async Task FindAllTest2()
@@ -117,7 +117,7 @@ namespace IceCreamDesktop.Data.Datasources.Tests
             Assert.Equal(2, result.Count);
         }
 
-        [ClearIceCreamDBBefore()]
+        [ClearIceCreamDBAfter()]
         [Trait("Method", "Update")]
         [Fact(DisplayName = "Should update the ice cream when present")]
         public async Task UpdateTest1()
@@ -140,7 +140,7 @@ namespace IceCreamDesktop.Data.Datasources.Tests
             Assert.Equal(updatedIceCream.ImageUrl, result.ImageUrl);
         }
 
-        [ClearIceCreamDBBefore()]
+        [ClearIceCreamDBAfter()]
         [Trait("Method", "Update")]
         [Fact(DisplayName = "Should throw an exception when the ice cream does not exist")]
         public async Task UpdateTest2()
@@ -152,7 +152,7 @@ namespace IceCreamDesktop.Data.Datasources.Tests
             await Assert.ThrowsAsync<NotFoundException>(func);
         }
 
-        [ClearIceCreamDBBefore()]
+        [ClearIceCreamDBAfter()]
         [Trait("Method", "Delete")]
         [Fact(DisplayName = "Should delete the ice cream when present")]
         public async Task DeleteTest1()
@@ -164,7 +164,7 @@ namespace IceCreamDesktop.Data.Datasources.Tests
             await TIceCreamDatasource.Delete(createdIceCream.Id);
         }
 
-        [ClearIceCreamDBBefore()]
+        [ClearIceCreamDBAfter()]
         [Trait("Method", "Delete")]
         [Fact(DisplayName = "Should throw an exception when the ice cream does not exist")]
         public async Task DeleteTest2()

@@ -27,7 +27,7 @@ namespace IceCreamDesktop.Data.Repositories
             }
             catch (Exception)
             {
-                return () => new IceCreamFailure("Could not add a new ice cream");
+                return () => new DataAccessFailure("Could not add a new ice cream");
             }
         }
 
@@ -40,7 +40,7 @@ namespace IceCreamDesktop.Data.Repositories
             }
             catch (Exception)
             {
-                return () => new IceCreamFailure("Could not get all ice creams");
+                return () => new DataAccessFailure("Could not get all ice creams");
             }
         }
     }

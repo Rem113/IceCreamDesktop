@@ -12,7 +12,7 @@ namespace IceCreamDesktop.Presentation.ViewModels
         private IceCreamModel Model;
 
         public ObservableCollection<IceCream> IceCreams { get; set; }
-        public IceCreamFailure Failure { get; set; }
+        public DataAccessFailure Failure { get; set; }
 
         public IceCreamViewModel()
         {
@@ -29,8 +29,8 @@ namespace IceCreamDesktop.Presentation.ViewModels
             result.Match(
                 Left: failure =>
                 {
-                    if (failure is IceCreamFailure)
-                        Failure = failure as IceCreamFailure;
+                    if (failure is DataAccessFailure)
+                        Failure = failure as DataAccessFailure;
                 },
                 Right: iceCreams =>
                 {

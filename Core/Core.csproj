@@ -51,10 +51,8 @@
     <Compile Include="Enums\Ratings.cs" />
     <Compile Include="Exceptions\ConflictException.cs" />
     <Compile Include="Exceptions\NotFoundException.cs" />
+    <Compile Include="Failures\DataAccessFailure.cs" />
     <Compile Include="Failures\Failure.cs" />
-    <Compile Include="Failures\IceCreamFailure.cs" />
-    <Compile Include="Failures\StoreFailure.cs" />
-    <Compile Include="Failures\StoreIceCreamFailure.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
