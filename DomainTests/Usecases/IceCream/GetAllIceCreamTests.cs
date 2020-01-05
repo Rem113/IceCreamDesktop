@@ -1,17 +1,14 @@
-﻿using Xunit;
-using IceCreamDesktop.Domain.Usecases;
+﻿using IceCreamDesktop.Core.Entities;
+using IceCreamDesktop.Core.Failures;
+using IceCreamDesktop.Domain.Interfaces;
+using Monad;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using IceCreamDesktop.Domain.Interfaces;
-using Telerik.JustMock;
-using Xunit.Sdk;
 using System.Reflection;
-using IceCreamDesktop.Core.Entities;
-using Monad;
-using IceCreamDesktop.Core.Failures;
+using System.Threading.Tasks;
+using Telerik.JustMock;
+using Xunit;
+using Xunit.Sdk;
 
 namespace IceCreamDesktop.Domain.Usecases.Tests
 {
@@ -23,12 +20,12 @@ namespace IceCreamDesktop.Domain.Usecases.Tests
         public static readonly List<IceCream> TIceCreams = new List<IceCream> {
             new IceCream(
                 name: "IceCream1",
-                brand: "IceCream1Brand", 
+                brand: "IceCream1Brand",
                 imageUrl: "https://www.osem.co.il/tm-content/uploads/2014/12/crunchVanilla-308x308.png"
             ),
             new IceCream(
                 name: "IceCream2",
-                brand: "IceCream2Brand", 
+                brand: "IceCream2Brand",
                 imageUrl: "https://www.osem.co.il/tm-content/uploads/2014/12/crunchVanilla-308x308.png"
             ),
         };

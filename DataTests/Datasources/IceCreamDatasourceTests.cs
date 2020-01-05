@@ -32,7 +32,7 @@ namespace IceCreamDesktop.Data.Datasources.Tests
         );
 
         [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
-        private class ClearIceCreamDBAfter : BeforeAfterTestAttribute
+        sealed class ClearIceCreamDBAfter : BeforeAfterTestAttribute
         {
             public override void After(MethodInfo methodUnderTest)
             {
@@ -83,7 +83,7 @@ namespace IceCreamDesktop.Data.Datasources.Tests
         public async Task FindByIdTest2()
         {
             // Act
-            async Task func() => await TIceCreamDatasource.FindById("1");
+            static async Task func() => await TIceCreamDatasource.FindById("1");
 
             // Assert
             await Assert.ThrowsAsync<NotFoundException>(func);
