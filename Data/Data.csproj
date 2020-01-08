@@ -46,6 +46,8 @@
   <ItemGroup>
     <Compile Include="Datasources\OrderDatasource.cs" />
     <Compile Include="Datasources\StoreDatasource.cs" />
+    <Compile Include="Datasources\StoreIceCreamDatasource.cs" />
+    <Compile Include="Interfaces\IAssociationTableDatasource.cs" />
     <Compile Include="Interfaces\IDatasource.cs" />
     <Compile Include="Datasources\IceCreamDatasource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

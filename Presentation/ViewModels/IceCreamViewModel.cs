@@ -9,7 +9,7 @@ namespace IceCreamDesktop.Presentation.ViewModels
 {
     public class IceCreamViewModel
     {
-        private IceCreamModel Model;
+        private readonly IceCreamModel Model;
 
         public ObservableCollection<IceCream> IceCreams { get; set; }
         public DataAccessFailure Failure { get; set; }

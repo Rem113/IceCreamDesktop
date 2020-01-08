@@ -73,6 +73,7 @@
     <Compile Include="Datasources\IceCreamDatasourceTests.cs" />
     <Compile Include="Datasources\OrderDatasourceTests.cs" />
     <Compile Include="Datasources\StoreDatasourceTests.cs" />
+    <Compile Include="Datasources\StoreIceCreamDatasourceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
