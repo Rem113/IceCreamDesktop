@@ -50,18 +50,16 @@ namespace IceCreamDesktop.Data.Datasources
                 SqlCommand query = new SqlCommand($"SELECT * FROM {TableName}", connection);
                 connection.Open();
 
-                using (SqlDataReader reader = query.ExecuteReader())
+                using SqlDataReader reader = query.ExecuteReader();
+                while (reader.Read())
                 {
-                    while (reader.Read())
-                    {
-                        string id = reader.GetInt32(0).ToString();
-                        string name = reader.GetString(1);
-                        string brand = reader.GetString(2);
-                        string imageUrl = reader.GetString(3);
+                    string id = reader.GetInt32(0).ToString();
+                    string name = reader.GetString(1);
+                    string brand = reader.GetString(2);
+                    string imageUrl = reader.GetString(3);
 
-                        IceCream iceCream = new IceCream(id: id, name: name, brand: brand, imageUrl: imageUrl);
-                        result.Add(iceCream);
-                    }
+                    IceCream iceCream = new IceCream(id: id, name: name, brand: brand, imageUrl: imageUrl);
+                    result.Add(iceCream);
                 }
             }
 
