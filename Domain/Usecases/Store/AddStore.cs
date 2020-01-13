@@ -8,7 +8,7 @@ namespace IceCreamDesktop.Domain.Usecases
 {
     public class AddStore : IUsecase<Either<Failure, Store>, AddStoreArgs>
     {
-        private IStoreRepository Repository { get; }
+        private readonly IStoreRepository Repository;
 
         public AddStore(IStoreRepository repository)
         {

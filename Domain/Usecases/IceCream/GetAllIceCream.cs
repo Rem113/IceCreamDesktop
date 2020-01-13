@@ -7,22 +7,22 @@ using System.Threading.Tasks;
 
 namespace IceCreamDesktop.Domain.Usecases
 {
-    public class GetAllIceCream : IUsecase<Either<Failure, List<IceCream>>, GetAllIceCreamArgs>
+    public class GetAllIceCreams : IUsecase<List<IceCream>, GetAllIceCreamsArgs>
     {
         private readonly IIceCreamRepository Repository;
 
-        public GetAllIceCream(IIceCreamRepository repository)
+        public GetAllIceCreams(IIceCreamRepository repository)
         {
             Repository = repository;
         }
 
-        public Task<Either<Failure, List<IceCream>>> Call(GetAllIceCreamArgs args)
+        public Task<List<IceCream>> Call(GetAllIceCreamsArgs args)
         {
-            return Repository.GetAllIceCream();
+            return Repository.GetAllIceCreams();
         }
     }
 
-    public class GetAllIceCreamArgs : IArgs
+    public class GetAllIceCreamsArgs : IArgs
     {
     }
 }

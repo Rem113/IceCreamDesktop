@@ -7,7 +7,7 @@ namespace IceCreamDesktop.Domain.Usecases
 {
     public class RemoveStore : IUsecase<Option<Failure>, RemoveStoreArgs>
     {
-        private IStoreRepository Repository { get; }
+        private readonly IStoreRepository Repository;
 
         public RemoveStore(IStoreRepository repository)
         {
@@ -22,9 +22,9 @@ namespace IceCreamDesktop.Domain.Usecases
 
     public class RemoveStoreArgs : IArgs
     {
-        public string StoreId { get; }
+        public int StoreId { get; }
 
-        public RemoveStoreArgs(string storeId)
+        public RemoveStoreArgs(int storeId)
         {
             StoreId = storeId;
         }

@@ -8,7 +8,7 @@ namespace IceCreamDesktop.Domain.Usecases
 {
     public class AddIceCream : IUsecase<Either<Failure, IceCream>, AddIceCreamArgs>
     {
-        private IIceCreamRepository Repository;
+        private readonly IIceCreamRepository Repository;
 
         public AddIceCream(IIceCreamRepository repository)
         {

@@ -1,0 +1,22 @@
+﻿<UserControl
+			xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			xmlns:MaterialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+			xmlns:local="clr-namespace:IceCreamDesktop.Presentation.Views.Controls"
+			x:Class="IceCreamDesktop.Presentation.Views.Controls.AddIceCreamForm"
+			mc:Ignorable="d">
+
+	<StackPanel DataContext="{Binding Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AddIceCreamForm}}}">
+		<TextBox Margin="10" MaterialDesign:HintAssist.Hint="Name" Text="{Binding IceCreamNameText, Mode=TwoWay}" />
+		<TextBox Margin="10" MaterialDesign:HintAssist.Hint="Brand" Text="{Binding IceCreamBrandText, Mode=TwoWay}" />
+		<TextBox Margin="10" MaterialDesign:HintAssist.Hint="ImageUrl" Text="{Binding IceCreamImageUrlText, Mode=TwoWay}" />
+		<Button 
+			Name="AddIceCreamButton" 
+			Content="Add a new ice cream" 
+			BorderThickness="0" 
+			Command="{Binding AddIceCreamCommand}">
+		</Button>
+	</StackPanel>
+</UserControl>

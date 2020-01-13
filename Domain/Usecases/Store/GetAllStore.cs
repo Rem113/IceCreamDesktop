@@ -5,20 +5,20 @@ using System.Threading.Tasks;
 
 namespace IceCreamDesktop.Domain.Usecases
 {
-    public class GetAllStore : IUsecase<List<Store>, GetAllStoreArgs>
+    public class GetAllStores : IUsecase<List<Store>, GetAllStoresArgs>
     {
-        private IStoreRepository Repository { get; }
+        private readonly IStoreRepository Repository;
 
-        public GetAllStore(IStoreRepository repository)
+        public GetAllStores(IStoreRepository repository)
         {
             Repository = repository;
         }
 
-        public Task<List<Store>> Call(GetAllStoreArgs args)
+        public Task<List<Store>> Call(GetAllStoresArgs args)
         {
-            return Repository.GetAllStore();
+            return Repository.GetAllStores();
         }
     }
 
-    public class GetAllStoreArgs : IArgs { }
+    public class GetAllStoresArgs : IArgs { }
 }
