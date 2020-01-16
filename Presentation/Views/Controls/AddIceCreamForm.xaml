@@ -9,11 +9,19 @@
 			mc:Ignorable="d">
 
 	<StackPanel DataContext="{Binding Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AddIceCreamForm}}}">
-		<TextBox Margin="10" MaterialDesign:HintAssist.Hint="Name" Text="{Binding IceCreamNameText, Mode=TwoWay}" />
-		<TextBox Margin="10" MaterialDesign:HintAssist.Hint="Brand" Text="{Binding IceCreamBrandText, Mode=TwoWay}" />
-		<TextBox Margin="10" MaterialDesign:HintAssist.Hint="ImageUrl" Text="{Binding IceCreamImageUrlText, Mode=TwoWay}" />
+		<TextBox 
+			Margin="10" 
+			MaterialDesign:HintAssist.Hint="Name" 
+			Text="{Binding IceCreamNameText, Mode=TwoWay}" />
+		<TextBox 
+			Margin="10" 
+			MaterialDesign:HintAssist.Hint="Brand" 
+			Text="{Binding IceCreamBrandText, Mode=TwoWay}" />
+		<TextBox 
+			Margin="10" 
+			MaterialDesign:HintAssist.Hint="ImageUrl" 
+			Text="{Binding IceCreamImageUrlText, Mode=TwoWay}" />
 		<Button 
-			Name="AddIceCreamButton" 
 			Content="Add a new ice cream" 
 			BorderThickness="0" 
 			Command="{Binding AddIceCreamCommand}">

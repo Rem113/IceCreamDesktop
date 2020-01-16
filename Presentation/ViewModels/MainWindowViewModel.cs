@@ -22,6 +22,7 @@ namespace IceCreamDesktop.Presentation.ViewModels
 		public string IceCreamNameText { get; set; }
 		public string IceCreamBrandText { get; set; }
 		public string IceCreamImageUrlText { get; set; }
+		public bool IsAddingIceCream { get; set; } = false;
 
 		public RelayCommand AddIceCreamCommand
 		{
@@ -65,7 +66,13 @@ namespace IceCreamDesktop.Presentation.ViewModels
 
 		public async void ExecuteAddIceCreamCommand(IceCream iceCream)
 		{
+			IsAddingIceCream = true;
+			RaisePropertyChanged("IsAddingIceCream");
+
 			var result = await AddIceCream.Call(new AddIceCreamArgs(iceCream));
+
+			IsAddingIceCream = false;
+			RaisePropertyChanged("IsAddingIceCream");
 
 			result.Match(
 				Left: failure => MessageBox.Show(failure.Message),

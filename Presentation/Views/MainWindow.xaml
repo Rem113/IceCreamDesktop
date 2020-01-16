@@ -21,8 +21,12 @@
 	</Window.DataContext>
 
 	<StackPanel>
-		<Controls:IceCreamList x:Name="IceCreamList" Width="600" Height="300" IceCreams="{Binding IceCreams}" />
-		<Controls:AddIceCreamForm x:Name="AddIceCreamForm" Width="300" Height="500" 
+		<Controls:IceCreamList Width="600" 
+							   Height="300" 
+							   IceCreams="{Binding IceCreams}" />
+		<Controls:AddIceCreamForm Width="300" 
+								  Height="500" 
+								  IsAddingIceCream="{Binding IsAddingIceCream, UpdateSourceTrigger=PropertyChanged}"
 								  IceCreamNameText="{Binding IceCreamNameText, Mode=TwoWay}" 
 								  IceCreamBrandText="{Binding IceCreamBrandText, Mode=TwoWay}" 
 								  IceCreamImageUrlText="{Binding IceCreamImageUrlText, Mode=TwoWay}" 

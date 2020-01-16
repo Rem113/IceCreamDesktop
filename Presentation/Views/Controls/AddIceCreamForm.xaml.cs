@@ -30,6 +30,12 @@ namespace IceCreamDesktop.Presentation.Views.Controls
 			set { SetValue(IceCreamImageUrlTextProperty, value); }
 		}
 
+		public bool IsAddingIceCream
+		{
+			get { return (bool)GetValue(IsAddingIceCreamProperty); }
+			set { SetValue(IsAddingIceCreamProperty, value); }
+		}
+
 		public static readonly DependencyProperty AddIceCreamCommandProperty =
 			DependencyProperty.Register("AddIceCreamCommand", typeof(ICommand), typeof(AddIceCreamForm));
 
@@ -41,6 +47,9 @@ namespace IceCreamDesktop.Presentation.Views.Controls
 
 		public static readonly DependencyProperty IceCreamImageUrlTextProperty =
 			DependencyProperty.Register("IceCreamImageUrlText", typeof(string), typeof(AddIceCreamForm));
+
+		public static readonly DependencyProperty IsAddingIceCreamProperty =
+			DependencyProperty.Register("IsAddingIceCream", typeof(bool), typeof(AddIceCreamForm));
 
 		public AddIceCreamForm()
 		{
