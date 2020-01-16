@@ -5,8 +5,14 @@
 			xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 			xmlns:MaterialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
 			xmlns:local="clr-namespace:IceCreamDesktop.Presentation.Views.Controls"
+			xmlns:Converter="clr-namespace:IceCreamDesktop.Presentation.Converters"
 			x:Class="IceCreamDesktop.Presentation.Views.Controls.AddIceCreamForm"
 			mc:Ignorable="d">
+
+	<UserControl.Resources>
+		<Converter:TrueToInvisibleConverter x:Key="TrueToInvisibleConverter" />
+		<Converter:TrueToVisibleConverter x:Key="TrueToVisibleConverter" />
+	</UserControl.Resources>
 
 	<StackPanel DataContext="{Binding Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AddIceCreamForm}}}">
 		<TextBox 
@@ -24,7 +30,12 @@
 		<Button 
 			Content="Add a new ice cream" 
 			BorderThickness="0" 
-			Command="{Binding AddIceCreamCommand}">
+			Command="{Binding AddIceCreamCommand}"
+			Visibility="{Binding IsAddingIceCream, Converter={StaticResource TrueToInvisibleConverter}}">
 		</Button>
+		<ProgressBar 
+			IsIndeterminate="True" 
+			Style="{StaticResource MaterialDesignCircularProgressBar}" 
+			Visibility="{Binding IsAddingIceCream, Converter={StaticResource TrueToVisibleConverter}}" />
 	</StackPanel>
 </UserControl>

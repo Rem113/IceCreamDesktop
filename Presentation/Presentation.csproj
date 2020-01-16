@@ -98,6 +98,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Container.cs" />
+    <Compile Include="Converters\TrueToVisibleConverter.cs" />
+    <Compile Include="Converters\TrueToInvisibleConverter.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\Controls\AddIceCreamForm.xaml.cs">

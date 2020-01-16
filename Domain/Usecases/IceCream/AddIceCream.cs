@@ -42,6 +42,8 @@ namespace IceCreamDesktop.Domain.Usecases
 				string result = await content.ReadAsStringAsync();
 				var res = JObject.Parse(result);
 
+				if (!res.ContainsKey("result")) return false;
+
 				var tags = res["result"]["tags"] as JArray;
 
 				foreach (var tag in tags)
