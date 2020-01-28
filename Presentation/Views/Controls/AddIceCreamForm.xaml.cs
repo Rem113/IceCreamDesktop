@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using IceCreamDesktop.Core.Entities;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -6,10 +7,18 @@ namespace IceCreamDesktop.Presentation.Views.Controls
 {
 	public partial class AddIceCreamForm : UserControl
 	{
+		public IceCream NewIceCream { get; set; } = new IceCream();
+
 		public ICommand AddIceCreamCommand
 		{
 			get { return (ICommand)GetValue(AddIceCreamCommandProperty); }
 			set { SetValue(AddIceCreamCommandProperty, value); }
+		}
+
+		public bool IsAddingIceCream
+		{
+			get { return (bool)GetValue(IsAddingIceCreamProperty); }
+			set { SetValue(IsAddingIceCreamProperty, value); }
 		}
 
 		public string IceCreamNameText
@@ -30,14 +39,11 @@ namespace IceCreamDesktop.Presentation.Views.Controls
 			set { SetValue(IceCreamImageUrlTextProperty, value); }
 		}
 
-		public bool IsAddingIceCream
-		{
-			get { return (bool)GetValue(IsAddingIceCreamProperty); }
-			set { SetValue(IsAddingIceCreamProperty, value); }
-		}
-
 		public static readonly DependencyProperty AddIceCreamCommandProperty =
 			DependencyProperty.Register("AddIceCreamCommand", typeof(ICommand), typeof(AddIceCreamForm));
+
+		public static readonly DependencyProperty IsAddingIceCreamProperty =
+			DependencyProperty.Register("IsAddingIceCream", typeof(bool), typeof(AddIceCreamForm));
 
 		public static readonly DependencyProperty IceCreamNameTextProperty =
 			DependencyProperty.Register("IceCreamNameText", typeof(string), typeof(AddIceCreamForm));
@@ -47,9 +53,6 @@ namespace IceCreamDesktop.Presentation.Views.Controls
 
 		public static readonly DependencyProperty IceCreamImageUrlTextProperty =
 			DependencyProperty.Register("IceCreamImageUrlText", typeof(string), typeof(AddIceCreamForm));
-
-		public static readonly DependencyProperty IsAddingIceCreamProperty =
-			DependencyProperty.Register("IsAddingIceCream", typeof(bool), typeof(AddIceCreamForm));
 
 		public AddIceCreamForm()
 		{

@@ -13,5 +13,6 @@ namespace IceCreamDesktop.Domain.Interfaces
     {
         Task<List<IceCream>> GetAllIceCreams();
         Task<Either<Failure, IceCream>> AddIceCream(IceCream iceCream);
+        Task<Option<Failure>> RemoveIceCream(int id);
     }
 }

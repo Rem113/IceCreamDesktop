@@ -4,10 +4,11 @@ using IceCreamDesktop.Data.Repositories;
 using IceCreamDesktop.Domain.Usecases;
 using IceCreamDesktop.Presentation.ViewModels.Commands;
 using Monad;
-using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows;
+using System.Windows.Input;
 
 namespace IceCreamDesktop.Presentation.ViewModels
 {
@@ -15,28 +16,43 @@ namespace IceCreamDesktop.Presentation.ViewModels
 	{
 		private readonly GetAllIceCreams GetAllIceCreams;
 		private readonly AddIceCream AddIceCream;
+		private readonly RemoveIceCream RemoveIceCream;
 
 		public event PropertyChangedEventHandler PropertyChanged;
 
+		// IceCreamList bindings
 		public ObservableCollection<IceCream> IceCreams { get; set; }
+		public ICommand RemoveIceCreamCommand 
+		{ 
+			get
+			{
+				return new RelayCommand(
+					o => ExecuteRemoveIceCreamCommand((int)o),
+					o => true
+				);
+			} 
+		}
+
+		// AddIceCreamForm bindings
 		public string IceCreamNameText { get; set; }
 		public string IceCreamBrandText { get; set; }
 		public string IceCreamImageUrlText { get; set; }
 		public bool IsAddingIceCream { get; set; } = false;
-
 		public RelayCommand AddIceCreamCommand
 		{
 			get
 			{
-				return new RelayCommand(o =>
-				{
-					ExecuteAddIceCreamCommand(new IceCream
+				return new RelayCommand(
+					o => ExecuteAddIceCreamCommand(o as IceCream),
+					o =>
 					{
-						Name = IceCreamNameText,
-						Brand = IceCreamBrandText,
-						ImageUrl = IceCreamImageUrlText
-					});
-				}, o => true);
+						var iceCream = o as IceCream;
+
+						return !string.IsNullOrEmpty(iceCream?.Name)
+						&& !string.IsNullOrEmpty(iceCream?.Brand)
+						&& !string.IsNullOrEmpty(iceCream?.ImageUrl);
+					}
+				);
 			}
 		}
 
@@ -47,6 +63,7 @@ namespace IceCreamDesktop.Presentation.ViewModels
 
 			GetAllIceCreams = new GetAllIceCreams(repository);
 			AddIceCream = new AddIceCream(repository);
+			RemoveIceCream = new RemoveIceCream(repository);
 
 			IceCreams = new ObservableCollection<IceCream>();
 
@@ -76,19 +93,26 @@ namespace IceCreamDesktop.Presentation.ViewModels
 
 			result.Match(
 				Left: failure => MessageBox.Show(failure.Message),
-				Right: iceCream => {
+				Right: iceCream =>
+				{
 					IceCreams.Add(iceCream);
-
-					// Clear inputs
-					IceCreamNameText = string.Empty;
-					IceCreamBrandText = string.Empty;
-					IceCreamImageUrlText = string.Empty;
-
-					RaisePropertyChanged("IceCreamNameText");
-					RaisePropertyChanged("IceCreamBrandText");
-					RaisePropertyChanged("IceCreamImageUrlText");
 				}
 			).Invoke();
+		}
+
+		public async void ExecuteRemoveIceCreamCommand(int id)
+		{
+			var result = await RemoveIceCream.Call(new RemoveIceCreamArgs(id));
+
+			result.Match(
+				Just: failure =>
+				{
+					MessageBox.Show(failure.Message);
+					return false;
+				},
+				Nothing: () => IceCreams.Remove(IceCreams.Where(i => i.Id == id).First())
+			).Invoke();
+
 		}
 	}
 }

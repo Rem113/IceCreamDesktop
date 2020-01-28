@@ -3,7 +3,6 @@
 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-		xmlns:local="clr-namespace:IceCreamDesktop.Presentation.Views"
 		xmlns:Controls="clr-namespace:IceCreamDesktop.Presentation.Views.Controls"
 		xmlns:MaterialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
 		xmlns:ViewModel="clr-namespace:IceCreamDesktop.Presentation.ViewModels"
@@ -21,15 +20,14 @@
 	</Window.DataContext>
 
 	<StackPanel>
-		<Controls:IceCreamList Width="600" 
-							   Height="300" 
-							   IceCreams="{Binding IceCreams}" />
-		<Controls:AddIceCreamForm Width="300" 
-								  Height="500" 
-								  IsAddingIceCream="{Binding IsAddingIceCream, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-								  IceCreamNameText="{Binding IceCreamNameText, Mode=TwoWay}" 
-								  IceCreamBrandText="{Binding IceCreamBrandText, Mode=TwoWay}" 
-								  IceCreamImageUrlText="{Binding IceCreamImageUrlText, Mode=TwoWay}" 
-								  AddIceCreamCommand="{Binding AddIceCreamCommand, UpdateSourceTrigger=PropertyChanged}" />
+		<Controls:IceCreamList Width="600"
+							   Height="300"
+							   IceCreams="{Binding IceCreams}"
+							   RemoveIceCreamCommand="{Binding RemoveIceCreamCommand}" />
+		<Controls:AddIceCreamForm	x:Name="AddIceCreamFormControl"
+									Width="300"
+									Height="500"
+									IsAddingIceCream="{Binding IsAddingIceCream, Mode=TwoWay}"
+									AddIceCreamCommand="{Binding AddIceCreamCommand}" />
 	</StackPanel>
 </Window>

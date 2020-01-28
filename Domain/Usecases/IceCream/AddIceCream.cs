@@ -20,7 +20,7 @@ namespace IceCreamDesktop.Domain.Usecases
 			Repository = repository;
 		}
 
-		private static List<string> ValidTags = new List<string> { "ice", "cream", "food" };
+		private static readonly List<string> ValidTags = new List<string> { "ice", "cream", "food" };
 
 		private async Task<bool> CheckImage(string imageUrl)
 		{
@@ -56,6 +56,7 @@ namespace IceCreamDesktop.Domain.Usecases
 		public async Task<Either<Failure, IceCream>> Call(AddIceCreamArgs args)
 		{
 			var isValidImage = await CheckImage(args.IceCream.ImageUrl);
+			// TODO: Change Failure type
 			if (!isValidImage) return () => new DataAccessFailure("Please enter a valid image url");
 
 			return await Repository.AddIceCream(args.IceCream);

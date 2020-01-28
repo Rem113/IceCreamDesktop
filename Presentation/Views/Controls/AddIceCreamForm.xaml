@@ -18,19 +18,20 @@
 		<TextBox 
 			Margin="10" 
 			MaterialDesign:HintAssist.Hint="Name" 
-			Text="{Binding IceCreamNameText, Mode=TwoWay}" />
+			Text="{Binding NewIceCream.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 		<TextBox 
 			Margin="10" 
 			MaterialDesign:HintAssist.Hint="Brand" 
-			Text="{Binding IceCreamBrandText, Mode=TwoWay}" />
+			Text="{Binding NewIceCream.Brand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 		<TextBox 
 			Margin="10" 
 			MaterialDesign:HintAssist.Hint="ImageUrl" 
-			Text="{Binding IceCreamImageUrlText, Mode=TwoWay}" />
+			Text="{Binding NewIceCream.ImageUrl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 		<Button 
 			Content="Add a new ice cream" 
 			BorderThickness="0" 
 			Command="{Binding AddIceCreamCommand}"
+			CommandParameter="{Binding NewIceCream}"
 			Visibility="{Binding IsAddingIceCream, Converter={StaticResource TrueToInvisibleConverter}}">
 		</Button>
 		<ProgressBar 

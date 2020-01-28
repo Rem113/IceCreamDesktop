@@ -57,9 +57,6 @@
     <Compile Include="Entities\Store.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Enums\Ratings.cs" />
-    <Compile Include="Exceptions\ConflictException.cs" />
-    <Compile Include="Exceptions\NotAllowedException.cs" />
-    <Compile Include="Exceptions\NotFoundException.cs" />
     <Compile Include="Failures\DataAccessFailure.cs" />
     <Compile Include="Failures\Failure.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

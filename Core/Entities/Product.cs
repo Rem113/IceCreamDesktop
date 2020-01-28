@@ -1,5 +1,4 @@
-﻿using IceCreamDesktop.Core.Enums;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace IceCreamDesktop.Core.Entities
 {
@@ -11,6 +10,7 @@ namespace IceCreamDesktop.Core.Entities
         public string BarCode { get; set; }
 
         public virtual IceCream IceCream { get; set; }
+        public virtual Store Store { get; set; }
         public virtual List<Review> Reviews { get; set; }
     }
 }
