@@ -15,28 +15,28 @@
 	</UserControl.Resources>
 
 	<StackPanel DataContext="{Binding Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:AddIceCreamForm}}}">
-		<TextBox 
-			Margin="10" 
-			MaterialDesign:HintAssist.Hint="Name" 
+		<TextBox
+			Margin="10"
+			MaterialDesign:HintAssist.Hint="Name"
 			Text="{Binding NewIceCream.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-		<TextBox 
-			Margin="10" 
-			MaterialDesign:HintAssist.Hint="Brand" 
+		<TextBox
+			Margin="10"
+			MaterialDesign:HintAssist.Hint="Brand"
 			Text="{Binding NewIceCream.Brand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-		<TextBox 
-			Margin="10" 
-			MaterialDesign:HintAssist.Hint="ImageUrl" 
+		<TextBox
+			Margin="10"
+			MaterialDesign:HintAssist.Hint="ImageUrl"
 			Text="{Binding NewIceCream.ImageUrl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-		<Button 
-			Content="Add a new ice cream" 
-			BorderThickness="0" 
+		<Button
+			Content="Add a new ice cream"
+			BorderThickness="0"
 			Command="{Binding AddIceCreamCommand}"
 			CommandParameter="{Binding NewIceCream}"
 			Visibility="{Binding IsAddingIceCream, Converter={StaticResource TrueToInvisibleConverter}}">
 		</Button>
-		<ProgressBar 
-			IsIndeterminate="True" 
-			Style="{StaticResource MaterialDesignCircularProgressBar}" 
+		<ProgressBar
+			IsIndeterminate="True"
+			Style="{StaticResource MaterialDesignCircularProgressBar}"
 			Visibility="{Binding IsAddingIceCream, Converter={StaticResource TrueToVisibleConverter}}" />
 	</StackPanel>
 </UserControl>

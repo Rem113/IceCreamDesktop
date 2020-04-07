@@ -2,10 +2,10 @@
 
 namespace IceCreamDesktop.Domain.Interfaces
 {
-    public interface IUsecase<Type, IArgs>
-    {
-        Task<Type> Call(IArgs args);
-    }
+	public interface IUsecase<Type, IArgs>
+	{
+		Task<Type> Call(IArgs args);
+	}
 
-    public interface IArgs { };
+	public interface IArgs { };
 }

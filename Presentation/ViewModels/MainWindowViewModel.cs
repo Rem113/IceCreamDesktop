@@ -22,22 +22,25 @@ namespace IceCreamDesktop.Presentation.ViewModels
 
 		// IceCreamList bindings
 		public ObservableCollection<IceCream> IceCreams { get; set; }
-		public ICommand RemoveIceCreamCommand 
-		{ 
+
+		public ICommand RemoveIceCreamCommand
+		{
 			get
 			{
 				return new RelayCommand(
 					o => ExecuteRemoveIceCreamCommand((int)o),
 					o => true
 				);
-			} 
+			}
 		}
 
 		// AddIceCreamForm bindings
 		public string IceCreamNameText { get; set; }
+
 		public string IceCreamBrandText { get; set; }
 		public string IceCreamImageUrlText { get; set; }
 		public bool IsAddingIceCream { get; set; } = false;
+
 		public RelayCommand AddIceCreamCommand
 		{
 			get
@@ -112,7 +115,6 @@ namespace IceCreamDesktop.Presentation.ViewModels
 				},
 				Nothing: () => IceCreams.Remove(IceCreams.Where(i => i.Id == id).First())
 			).Invoke();
-
 		}
 	}
 }

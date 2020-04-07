@@ -41,7 +41,7 @@
 							<TextBlock
 								VerticalAlignment="Center"
 								Text="{Binding Name}"
-								TextAlignment="Center" 
+								TextAlignment="Center"
 								TextWrapping="Wrap" />
 						</DockPanel>
 					</MaterialDesign:Card>

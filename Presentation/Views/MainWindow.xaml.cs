@@ -1,8 +1,4 @@
-﻿using IceCreamDesktop.Core.Entities;
-using IceCreamDesktop.Presentation.ViewModels;
-using IceCreamDesktop.Presentation.Views.Controls;
-using System.Collections.ObjectModel;
-using System.Windows;
+﻿using System.Windows;
 
 namespace IceCreamDesktop.Presentation.Views
 {

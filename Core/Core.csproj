@@ -59,6 +59,7 @@
     <Compile Include="Enums\Ratings.cs" />
     <Compile Include="Failures\DataAccessFailure.cs" />
     <Compile Include="Failures\Failure.cs" />
+    <Compile Include="Failures\InvalidInputFailure.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
