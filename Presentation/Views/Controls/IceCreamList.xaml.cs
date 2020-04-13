@@ -1,30 +1,34 @@
 ﻿using IceCreamDesktop.Core.Entities;
-using System.Collections.ObjectModel;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 namespace IceCreamDesktop.Presentation.Views.Controls
 {
+	/// <summary>
+	/// Interaction logic for IceCreamList.xaml
+	/// </summary>
 	public partial class IceCreamList : UserControl
 	{
-		public ObservableCollection<IceCream> IceCreams
+		public List<IceCream> IceCreams
 		{
-			get { return (ObservableCollection<IceCream>)GetValue(IceCreamsProperty); }
+			get { return (List<IceCream>)GetValue(IceCreamsProperty); }
 			set { SetValue(IceCreamsProperty, value); }
 		}
 
-		public ICommand RemoveIceCreamCommand
-		{
-			get { return (ICommand)GetValue(RemoveIceCreamCommandProperty); }
-			set { SetValue(RemoveIceCreamCommandProperty, value); }
-		}
-
-		public static readonly DependencyProperty RemoveIceCreamCommandProperty =
-			DependencyProperty.Register("RemoveIceCreamCommand", typeof(ICommand), typeof(IceCreamList));
-
 		public static readonly DependencyProperty IceCreamsProperty =
-			DependencyProperty.Register("IceCreams", typeof(ObservableCollection<IceCream>), typeof(IceCreamList));
+			DependencyProperty.Register("IceCreams", typeof(List<IceCream>), typeof(IceCreamList));
 
 		public IceCreamList()
 		{

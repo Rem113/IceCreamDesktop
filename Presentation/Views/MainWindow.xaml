@@ -3,31 +3,30 @@
 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-		xmlns:Controls="clr-namespace:IceCreamDesktop.Presentation.Views.Controls"
 		xmlns:MaterialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
 		xmlns:ViewModel="clr-namespace:IceCreamDesktop.Presentation.ViewModels"
+		xmlns:Page="clr-namespace:IceCreamDesktop.Presentation.Views.Pages"
 		mc:Ignorable="d"
 		Title="MainWindow"
-		WindowState="Maximized"
-		TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-		Background="{DynamicResource MaterialDesignPaper}"
 		TextElement.FontWeight="Medium"
 		TextElement.FontSize="14"
-		FontFamily="{MaterialDesign:MaterialDesignFont}">
+		TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+		Background="{DynamicResource MaterialDesignPaper}"
+		FontFamily="{MaterialDesign:MaterialDesignFont}"
+		Width="1200" Height="900">
 
 	<Window.DataContext>
 		<ViewModel:MainWindowViewModel />
 	</Window.DataContext>
 
-	<StackPanel>
-		<Controls:IceCreamList Width="600"
-							   Height="300"
-							   IceCreams="{Binding IceCreams}"
-							   RemoveIceCreamCommand="{Binding RemoveIceCreamCommand}" />
-		<Controls:AddIceCreamForm	x:Name="AddIceCreamFormControl"
-									Width="300"
-									Height="500"
-									IsAddingIceCream="{Binding IsAddingIceCream, Mode=TwoWay}"
-									AddIceCreamCommand="{Binding AddIceCreamCommand}" />
-	</StackPanel>
+	<Window.Resources>
+		<DataTemplate DataType="{x:Type ViewModel:MenuPageViewModel}">
+			<Page:MenuPage />
+		</DataTemplate>
+		<DataTemplate DataType="{x:Type ViewModel:IceCreamListPageViewModel}">
+			<Page:IceCreamListPage />
+		</DataTemplate>
+	</Window.Resources>
+
+	<ContentPresenter Content="{Binding CurrentPageViewModel}" />
 </Window>
