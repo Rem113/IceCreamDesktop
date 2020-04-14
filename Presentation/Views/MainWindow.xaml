@@ -26,6 +26,9 @@
 		<DataTemplate DataType="{x:Type ViewModel:IceCreamListPageViewModel}">
 			<Page:IceCreamListPage />
 		</DataTemplate>
+		<DataTemplate DataType="{x:Type ViewModel:IceCreamDetailViewModel}">
+			<Page:IceCreamDetailPage />
+		</DataTemplate>
 	</Window.Resources>
 
 	<ContentPresenter Content="{Binding CurrentPageViewModel}" />

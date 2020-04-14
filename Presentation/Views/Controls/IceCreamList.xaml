@@ -8,7 +8,10 @@
 		<ItemsControl ItemsSource="{Binding IceCreams}">
 			<ItemsControl.ItemTemplate>
 				<DataTemplate>
-					<Button Style="{StaticResource MaterialDesignToolForegroundButton}" Height="200">
+					<Button Command="{Binding NavigateCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:IceCreamList}}}"
+							CommandParameter="{Binding}"
+							Style="{StaticResource MaterialDesignToolForegroundButton}"
+							Height="200">
 						<DockPanel Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
 							<Image
 								Margin="16"

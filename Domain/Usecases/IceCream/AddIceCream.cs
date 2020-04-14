@@ -5,6 +5,8 @@ using Monad;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -27,7 +29,7 @@ namespace IceCreamDesktop.Domain.Usecases
 			string apiKey = "acc_ae1dfdc132382d6";
 			string apiSecret = "0f236e11c14a4e160f679b32e998f5cb";
 
-			string basicAuthValue = System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(string.Format("{0}:{1}", apiKey, apiSecret)));
+			string basicAuthValue = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(string.Format("{0}:{1}", apiKey, apiSecret)));
 
 			using (var client = new HttpClient())
 			{
@@ -53,11 +55,34 @@ namespace IceCreamDesktop.Domain.Usecases
 			return false;
 		}
 
+		private async Task<object> GetNutritionalInfo(string iceCreamName)
+		{
+			string apiKey = "Rh3Mgm9Ej6Cf2Gu2uq4AdTRs8OXVtoUKYzRwKZIC";
+
+			using (var client = new HttpClient())
+			{
+				ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+				var builder = new UriBuilder("https://api.nal.usda.gov/fdc/v1/foods/search");
+				builder.Query = "api_key=" + apiKey + "&query=" + iceCreamName;
+
+				HttpResponseMessage response = await client.GetAsync(builder.Uri);
+
+				HttpContent content = response.Content;
+				string result = await content.ReadAsStringAsync();
+
+				Debug.WriteLine(result);
+
+				return result;
+			}
+		}
+
 		public async Task<Either<Failure, IceCream>> Call(AddIceCreamArgs args)
 		{
 			var isValidImage = await CheckImage(args.IceCream.ImageUrl);
 			// TODO: Change Failure type
 			if (!isValidImage) return () => new DataAccessFailure("Please enter a valid image url");
+
+			var info = await GetNutritionalInfo(args.IceCream.Name);
 
 			return await Repository.AddIceCream(args.IceCream);
 		}

@@ -62,7 +62,7 @@ namespace IceCreamDesktop.Presentation.ViewModels
 
 		public RelayCommand FilterList { get; set; }
 
-		public RelayCommand NavigateToMenuPage { get; set; }
+		public RelayCommand NavigateToDetailPage { get; set; }
 
 		public IceCreamListPageViewModel(MainWindowViewModel mainWindowViewModel)
 		{
@@ -74,8 +74,8 @@ namespace IceCreamDesktop.Presentation.ViewModels
 			IceCreamRepository iceCreamRepository = new IceCreamRepository(kiosk);
 			GetAllIceCreams = new GetAllIceCreams(iceCreamRepository);
 
-			NavigateToMenuPage = new RelayCommand(
-				(o) => MainWindowViewModel.Navigate(new MenuPageViewModel(MainWindowViewModel)),
+			NavigateToDetailPage = new RelayCommand(
+				(o) => MainWindowViewModel.Navigate(new IceCreamDetailViewModel(MainWindowViewModel, o as IceCream)),
 				(o) => true
 			);
 

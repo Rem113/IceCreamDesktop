@@ -11,21 +11,17 @@ using Xunit.Sdk;
 namespace IceCreamDesktop.Domain.Usecases.Tests
 {
 	[Collection("IceCreamUseCases")]
-	public class GetAllIceCreamTests
+	public class AddIceCreamTests
 	{
 		public static readonly IIceCreamRepository TRepository = Mock.Create<IIceCreamRepository>();
 
-		public static readonly List<IceCream> TIceCreams = new List<IceCream> {
-			new IceCream {
-				Name = "Crunch Vanilla",
-				Brand = "Nestle",
-				ImageUrl = "https://www.osem.co.il/tm-content/uploads/2014/12/crunchVanilla-308x308.png"
-			},
-			new IceCream {
-				Name = "Crunch Vanilla",
-				Brand = "Nestle",
-				ImageUrl = "https://www.osem.co.il/tm-content/uploads/2014/12/crunchVanilla-308x308.png"
-			},
+		public static readonly IceCream TIceCream = new IceCream
+		{
+			Name = "Crunch Vanilla",
+			Brand = "Nestle",
+			ImageUrl = "https://www.osem.co.il/tm-content/uploads/2014/12/crunchVanilla-308x308.png",
+			Energy = 0.0,
+			Fat = 0.0
 		};
 
 		[AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
@@ -40,19 +36,17 @@ namespace IceCreamDesktop.Domain.Usecases.Tests
 		[ClearMockAfter()]
 		[Trait("Method", "Call")]
 		[Fact(DisplayName = "Should return a list of ice creams when the repository is successful")]
-		public async Task GetAllIceCreamTest1()
+		public async Task AddIceCreamTest1()
 		{
 			// Arrange
-			Mock.Arrange(() => TRepository.GetAllIceCreams()).TaskResult(TIceCreams);
-			GetAllIceCreams getAllIceCreams = new GetAllIceCreams(TRepository);
-			GetAllIceCreamsArgs args = new GetAllIceCreamsArgs();
+			Mock.Arrange(() => TRepository.AddIceCream(TIceCream)).TaskResult(() => TIceCream);
+			AddIceCream addIceCream = new AddIceCream(TRepository);
+			AddIceCreamArgs args = new AddIceCreamArgs(TIceCream);
 
 			// Act
-			var result = await getAllIceCreams.Call(args);
+			var result = await addIceCream.Call(args);
 
 			// Assert
-			Assert.NotEmpty(result);
-			Assert.Equal(TIceCreams.Count, result.Count);
 		}
 	}
 }

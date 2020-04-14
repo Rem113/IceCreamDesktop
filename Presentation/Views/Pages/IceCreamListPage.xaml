@@ -37,9 +37,10 @@
 					Width="80" />
 			</StackPanel>
 		</StackPanel>
-		<Controls:IceCreamList 
+		<Controls:IceCreamList
 			Grid.Row="1"
-			IceCreams="{Binding DisplayIceCreams}" />
+			IceCreams="{Binding DisplayIceCreams}"
+			NavigateCommand="{Binding NavigateToDetailPage}" />
 		<Button
 			Grid.Row="1"
 			HorizontalAlignment="Right"

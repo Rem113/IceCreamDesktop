@@ -1,4 +1,5 @@
 ﻿using IceCreamDesktop.Core.Entities;
+using IceCreamDesktop.Presentation.ViewModels.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,15 @@ namespace IceCreamDesktop.Presentation.Views.Controls
 	/// </summary>
 	public partial class IceCreamList : UserControl
 	{
+		public RelayCommand NavigateCommand
+		{
+			get { return (RelayCommand)GetValue(NavigateCommandProperty); }
+			set { SetValue(NavigateCommandProperty, value); }
+		}
+
+		public static readonly DependencyProperty NavigateCommandProperty =
+			DependencyProperty.Register("NavigateCommand", typeof(RelayCommand), typeof(IceCreamList));
+
 		public List<IceCream> IceCreams
 		{
 			get { return (List<IceCream>)GetValue(IceCreamsProperty); }
