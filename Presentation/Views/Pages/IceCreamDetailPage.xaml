@@ -9,8 +9,8 @@
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="3*" />
-			<RowDefinition Height="*" />
-			<RowDefinition Height="6*" />
+			<RowDefinition Height="2*" />
+			<RowDefinition Height="5*" />
 		</Grid.RowDefinitions>
 		<Image
 			Grid.Row="0"
@@ -33,6 +33,24 @@
 				Text="{Binding IceCream.Brand}"
 				TextAlignment="Center"
 				Style="{StaticResource MaterialDesignHeadline6TextBlock}" />
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+				<TextBlock
+					Text="Energy: "
+					VerticalAlignment="Center"
+					Style="{StaticResource MaterialDesignCaptionTextBlock}" />
+				<TextBlock
+					VerticalAlignment="Center"
+					Text="{Binding IceCream.Energy}" />
+			</StackPanel>
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+				<TextBlock
+					Text="Fat: "
+					VerticalAlignment="Center"
+					Style="{StaticResource MaterialDesignCaptionTextBlock}" />
+				<TextBlock
+					VerticalAlignment="Center"
+					Text="{Binding IceCream.Fat}" />
+			</StackPanel>
 		</StackPanel>
 		<Button HorizontalAlignment="Left"
 				VerticalAlignment="Top"

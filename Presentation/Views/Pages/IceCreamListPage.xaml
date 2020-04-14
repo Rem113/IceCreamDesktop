@@ -43,11 +43,19 @@
 			NavigateCommand="{Binding NavigateToDetailPage}" />
 		<Button
 			Grid.Row="1"
+			Command="{Binding NavigateToAddIceCreamPage}"
 			HorizontalAlignment="Right"
 			VerticalAlignment="Bottom"
 			Margin="32"
 			Style="{StaticResource MaterialDesignFloatingActionAccentButton}">
 			<MaterialDesign:PackIcon Kind="Add" />
+		</Button>
+		<Button HorizontalAlignment="Left"
+				VerticalAlignment="Top"
+				Margin="32"
+				Command="{Binding NavigateBack}"
+				Style="{StaticResource MaterialDesignFloatingActionAccentButton}">
+			<MaterialDesign:PackIcon Kind="ArrowLeft" />
 		</Button>
 	</Grid>
 </UserControl>

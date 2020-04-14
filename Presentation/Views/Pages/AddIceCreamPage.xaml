@@ -1,0 +1,65 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:IceCreamDesktop.Presentation.Views.Pages"
+			 xmlns:MaterialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:Converters="clr-namespace:IceCreamDesktop.Presentation.Converters" x:Class="IceCreamDesktop.Presentation.Views.Pages.AddIceCreamPage"
+             mc:Ignorable="d"
+             d:DesignHeight="900" d:DesignWidth="1200">
+	<UserControl.Resources>
+		<Converters:TrueToVisibleConverter x:Key="TrueToVisibleConverter" />
+		<Converters:TrueToInvisibleConverter x:Key="TrueToInvisibleConverter" />
+		<BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+	</UserControl.Resources>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*" />
+			<RowDefinition Height="2*" />
+		</Grid.RowDefinitions>
+		<StackPanel Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+			<TextBlock Text="Add Ice Cream" FontSize="64" />
+		</StackPanel>
+		<StackPanel
+			MaxWidth="500"
+			Grid.Row="1"
+			VerticalAlignment="Center">
+			<TextBox
+				Text="{Binding NameValue, Mode=TwoWay}"
+				MaterialDesign:HintAssist.Hint="Name"
+				MaterialDesign:HintAssist.IsFloating="True"
+				Margin="24" />
+			<TextBox
+				Text="{Binding BrandValue, Mode=TwoWay}"
+				MaterialDesign:HintAssist.Hint="Brand"
+				MaterialDesign:HintAssist.IsFloating="True"
+				Margin="24" />
+			<TextBox
+				Text="{Binding ImageURLValue, Mode=TwoWay}"
+				MaterialDesign:HintAssist.Hint="Image URL"
+				MaterialDesign:HintAssist.IsFloating="True"
+				Margin="24" />
+			<Button
+				Width="100"
+				Margin="0, 32"
+				Visibility="{Binding IsLoading, Converter={StaticResource TrueToInvisibleConverter}}"
+				Style="{StaticResource MaterialDesignRaisedAccentButton}"
+				Command="{Binding AddIceCreamCommand}"
+				Content="Add" />
+			<ProgressBar
+				Width="48"
+				Margin="38"
+				IsIndeterminate="True"
+				Visibility="{Binding IsLoading, Converter={StaticResource TrueToVisibleConverter}}"
+				Style="{StaticResource MaterialDesignCircularProgressBar}" />
+		</StackPanel>
+		<Button HorizontalAlignment="Left"
+				VerticalAlignment="Top"
+				Margin="32"
+				Command="{Binding NavigateBack}"
+				Style="{StaticResource MaterialDesignFloatingActionAccentButton}">
+			<MaterialDesign:PackIcon Kind="ArrowLeft" />
+		</Button>
+	</Grid>
+</UserControl>

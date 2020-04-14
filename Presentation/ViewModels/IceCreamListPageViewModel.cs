@@ -64,6 +64,10 @@ namespace IceCreamDesktop.Presentation.ViewModels
 
 		public RelayCommand NavigateToDetailPage { get; set; }
 
+		public RelayCommand NavigateToAddIceCreamPage { get; set; }
+
+		public RelayCommand NavigateBack { get; set; }
+
 		public IceCreamListPageViewModel(MainWindowViewModel mainWindowViewModel)
 		{
 			MainWindowViewModel = mainWindowViewModel;
@@ -79,8 +83,18 @@ namespace IceCreamDesktop.Presentation.ViewModels
 				(o) => true
 			);
 
+			NavigateToAddIceCreamPage = new RelayCommand(
+				(o) => MainWindowViewModel.Navigate(new AddIceCreamPageViewModel(MainWindowViewModel)),
+				(o) => true
+			);
+
 			FilterList = new RelayCommand(
 				(o) => Filter = new IceCreamFilter(o.ToString()),
+				(o) => true
+			);
+
+			NavigateBack = new RelayCommand(
+				(o) => MainWindowViewModel.Navigate(new MenuPageViewModel(MainWindowViewModel)),
 				(o) => true
 			);
 

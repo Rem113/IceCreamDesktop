@@ -6,6 +6,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -55,7 +56,7 @@ namespace IceCreamDesktop.Domain.Usecases
 			return false;
 		}
 
-		private async Task<object> GetNutritionalInfo(string iceCreamName)
+		private async Task<(double, double)> GetNutritionalInfo(string iceCreamName)
 		{
 			string apiKey = "Rh3Mgm9Ej6Cf2Gu2uq4AdTRs8OXVtoUKYzRwKZIC";
 
@@ -63,16 +64,26 @@ namespace IceCreamDesktop.Domain.Usecases
 			{
 				ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 				var builder = new UriBuilder("https://api.nal.usda.gov/fdc/v1/foods/search");
-				builder.Query = "api_key=" + apiKey + "&query=" + iceCreamName;
+				builder.Query = "api_key=" + apiKey + "&pageSize=300";
 
 				HttpResponseMessage response = await client.GetAsync(builder.Uri);
 
 				HttpContent content = response.Content;
 				string result = await content.ReadAsStringAsync();
+				var obj = JObject.Parse(result);
 
-				Debug.WriteLine(result);
+				var foods = obj["foods"] as JArray;
 
-				return result;
+				var rand = new Random(Guid.NewGuid().GetHashCode());
+				var foodNutrients = foods[rand.Next(300)]["foodNutrients"] as JArray;
+				var energy = (double)foodNutrients
+					.Where(nutrient => (nutrient as JObject)["nutrientName"].ToString() == "Energy")
+					.First()["nutrientNumber"];
+				var fat = (double)foodNutrients
+					.Where(nutrient => (nutrient as JObject)["nutrientName"].ToString() == "Total lipid (fat)")
+					.First()["nutrientNumber"];
+
+				return (energy, fat);
 			}
 		}
 
@@ -82,7 +93,10 @@ namespace IceCreamDesktop.Domain.Usecases
 			// TODO: Change Failure type
 			if (!isValidImage) return () => new DataAccessFailure("Please enter a valid image url");
 
-			var info = await GetNutritionalInfo(args.IceCream.Name);
+			var (energy, fat) = await GetNutritionalInfo(args.IceCream.Name);
+
+			args.IceCream.Energy = energy;
+			args.IceCream.Fat = fat;
 
 			return await Repository.AddIceCream(args.IceCream);
 		}
