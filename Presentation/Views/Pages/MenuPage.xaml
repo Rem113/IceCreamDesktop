@@ -32,7 +32,8 @@
 						<TextBlock Text=" Browse Ice Creams" VerticalAlignment="Center" FontSize="30" />
 					</StackPanel>
 				</Button>
-				<Button Margin="0 10 0 10" Style="{StaticResource MaterialDesignFlatDarkBgButton}" Height="80">
+				<Button Margin="0 10 0 10" Style="{StaticResource MaterialDesignFlatDarkBgButton}" Height="80"
+						Command="{Binding NavigateToStoreListPage}">
 					<StackPanel Orientation="Horizontal">
 						<MaterialDesign:PackIcon Kind="Store" Width="50" Height="50" />
 						<TextBlock Text=" Browse Stores" VerticalAlignment="Center" FontSize="30" />

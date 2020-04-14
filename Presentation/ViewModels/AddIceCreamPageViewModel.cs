@@ -51,10 +51,7 @@ namespace IceCreamDesktop.Presentation.ViewModels
 				(o) => true
 			);
 
-			AddIceCreamCommand = new RelayCommand(
-				AddIceCreamExecute,
-				(o) => true
-			);
+			AddIceCreamCommand = new RelayCommand(AddIceCreamExecute);
 		}
 
 		private async void AddIceCreamExecute(object o)
