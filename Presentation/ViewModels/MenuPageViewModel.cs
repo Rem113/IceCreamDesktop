@@ -7,24 +7,20 @@ using System.Threading.Tasks;
 
 namespace IceCreamDesktop.Presentation.ViewModels
 {
-	public class MenuPageViewModel : BaseViewModel, IPageViewModel
+	public class MenuPageViewModel : PageViewModel
 	{
-		public MainWindowViewModel MainWindowViewModel { get; set; }
-
 		public RelayCommand NavigateToIceCreamListPage { get; set; }
 
 		public RelayCommand NavigateToStoreListPage { get; set; }
 
-		public MenuPageViewModel(MainWindowViewModel mainWindowViewModel)
+		public MenuPageViewModel()
 		{
-			MainWindowViewModel = mainWindowViewModel;
-
 			NavigateToIceCreamListPage = new RelayCommand(
-				(o) => MainWindowViewModel.Navigate(new IceCreamListPageViewModel(MainWindowViewModel))
+				(o) => Navigator.Push(new IceCreamListPageViewModel())
 			);
 
 			NavigateToStoreListPage = new RelayCommand(
-				(o) => MainWindowViewModel.Navigate(new StoreListPageViewModel(MainWindowViewModel))
+				(o) => Navigator.Push(new StoreListPageViewModel())
 			);
 		}
 	}

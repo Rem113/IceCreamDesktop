@@ -13,11 +13,9 @@ using System.Windows;
 
 namespace IceCreamDesktop.Presentation.ViewModels
 {
-	public class AddIceCreamPageViewModel : BaseViewModel, IPageViewModel
+	public class AddIceCreamPageViewModel : PageViewModel
 	{
 		private bool isLoading = false;
-
-		private MainWindowViewModel MainWindowViewModel { get; set; }
 
 		private AddIceCream AddIceCream { get; set; }
 
@@ -38,18 +36,13 @@ namespace IceCreamDesktop.Presentation.ViewModels
 		public RelayCommand AddIceCreamCommand { get; set; }
 		public RelayCommand NavigateBack { get; set; }
 
-		public AddIceCreamPageViewModel(MainWindowViewModel mainWindowViewModel)
+		public AddIceCreamPageViewModel()
 		{
-			MainWindowViewModel = mainWindowViewModel;
-
 			KioskContext kiosk = new KioskContext();
 			IceCreamRepository repository = new IceCreamRepository(kiosk);
 			AddIceCream = new AddIceCream(repository);
 
-			NavigateBack = new RelayCommand(
-				(o) => MainWindowViewModel.Navigate(new IceCreamListPageViewModel(MainWindowViewModel)),
-				(o) => true
-			);
+			NavigateBack = new RelayCommand((o) => Navigator.Pop());
 
 			AddIceCreamCommand = new RelayCommand(AddIceCreamExecute);
 		}
@@ -72,7 +65,7 @@ namespace IceCreamDesktop.Presentation.ViewModels
 
 			result.Match(
 				Left: failure => MessageBox.Show(failure.Message),
-				Right: iceCream => MainWindowViewModel.Navigate(new IceCreamListPageViewModel(MainWindowViewModel))
+				Right: iceCream => Navigator.Push(new IceCreamListPageViewModel())
 			).Invoke();
 		}
 	}

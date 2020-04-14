@@ -16,7 +16,7 @@
 		Width="1200" Height="900">
 
 	<Window.DataContext>
-		<ViewModel:MainWindowViewModel />
+		<ViewModel:Navigator />
 	</Window.DataContext>
 
 	<Window.Resources>
@@ -43,5 +43,5 @@
 		</DataTemplate>
 	</Window.Resources>
 
-	<ContentPresenter Content="{Binding CurrentPageViewModel}" />
+	<ContentPresenter Content="{Binding CurrentPage}" />
 </Window>

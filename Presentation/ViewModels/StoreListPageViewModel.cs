@@ -8,10 +8,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Threading;
 
 namespace IceCreamDesktop.Presentation.ViewModels
 {
-	public class StoreListPageViewModel : BaseViewModel, IPageViewModel
+	public class StoreListPageViewModel : PageViewModel
 	{
 		private List<Store> stores;
 		private List<Store> displayStores = new List<Store>();
@@ -26,11 +28,17 @@ namespace IceCreamDesktop.Presentation.ViewModels
 			}
 		}
 
-		private MainWindowViewModel MainWindowViewModel { get; set; }
+		public List<Store> DisplayStores
+		{
+			get => displayStores;
+			set
+			{
+				displayStores = value;
+				OnPropertyChanged("DisplayStores");
+			}
+		}
 
 		private GetAllStores GetAllStores { get; set; }
-
-		public List<Store> DisplayStores { get; set; }
 
 		public RelayCommand NavigateToAddStorePage { get; set; }
 
@@ -38,32 +46,37 @@ namespace IceCreamDesktop.Presentation.ViewModels
 
 		public RelayCommand NavigateBack { get; set; }
 
-		public StoreListPageViewModel(MainWindowViewModel mainWindowViewModel)
+		public StoreListPageViewModel()
 		{
-			MainWindowViewModel = mainWindowViewModel;
-
 			KioskContext kiosk = new KioskContext();
 			StoreRepository repository = new StoreRepository(kiosk);
 			GetAllStores = new GetAllStores(repository);
 
+			Stores = new List<Store>();
+
 			NavigateToAddStorePage = new RelayCommand(
-				(o) => MainWindowViewModel.Navigate(new AddStorePageViewModel(MainWindowViewModel))
+				(o) => Navigator.Push(new AddStorePageViewModel())
 			);
 
 			NavigateToDetailPage = new RelayCommand(
-				(o) => MainWindowViewModel.Navigate(new StoreDetailPageViewModel(MainWindowViewModel, o as Store))
+				(o) => Navigator.Push(new StoreDetailPageViewModel(o as Store))
 			);
 
-			NavigateBack = new RelayCommand(
-				(o) => MainWindowViewModel.Navigate(new MenuPageViewModel(MainWindowViewModel))
-			);
-
-			Initialize();
+			NavigateBack = new RelayCommand((o) => Navigator.Pop());
 		}
 
-		private async void Initialize()
+		public override void OnResumed()
 		{
-			Stores = await GetAllStores.Call(new GetAllStoresArgs());
+			Application.Current.Dispatcher.BeginInvoke(
+				DispatcherPriority.Background,
+				new Action(async () =>
+				{
+					var temp = await GetAllStores.Call(new GetAllStoresArgs());
+
+					if (temp.Count != Stores.Count)
+						Stores = temp;
+				})
+			);
 		}
 	}
 }

@@ -9,24 +9,17 @@ using System.Windows;
 
 namespace IceCreamDesktop.Presentation.ViewModels
 {
-	public class IceCreamDetailViewModel : BaseViewModel, IPageViewModel
+	public class IceCreamDetailViewModel : PageViewModel
 	{
-		private MainWindowViewModel MainWindowViewModel { get; set; }
-
 		public IceCream IceCream { get; set; }
 
 		public RelayCommand NavigateBack { get; set; }
 
-		public IceCreamDetailViewModel(MainWindowViewModel mainWindowViewModel, IceCream iceCream)
+		public IceCreamDetailViewModel(IceCream iceCream)
 		{
-			MainWindowViewModel = mainWindowViewModel;
-
 			IceCream = iceCream;
 
-			NavigateBack = new RelayCommand(
-				(o) => MainWindowViewModel.Navigate(new IceCreamListPageViewModel(MainWindowViewModel)),
-				(o) => true
-			);
+			NavigateBack = new RelayCommand((o) => Navigator.Pop());
 		}
 	}
 }

@@ -3,9 +3,13 @@ using IceCreamDesktop.Data;
 using IceCreamDesktop.Data.Repositories;
 using IceCreamDesktop.Domain.Usecases;
 using IceCreamDesktop.Presentation.ViewModels.Commands;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Windows;
+using System.Windows.Threading;
 
 namespace IceCreamDesktop.Presentation.ViewModels
 {
@@ -19,7 +23,7 @@ namespace IceCreamDesktop.Presentation.ViewModels
 		}
 	}
 
-	public class IceCreamListPageViewModel : BaseViewModel, IPageViewModel
+	public class IceCreamListPageViewModel : PageViewModel
 	{
 		private List<IceCream> iceCreams;
 		private List<IceCream> displayIceCreams = new List<IceCream>();
@@ -34,8 +38,6 @@ namespace IceCreamDesktop.Presentation.ViewModels
 				DisplayIceCreams = value;
 			}
 		}
-
-		public MainWindowViewModel MainWindowViewModel { get; set; }
 
 		public List<IceCream> DisplayIceCreams
 		{
@@ -68,10 +70,8 @@ namespace IceCreamDesktop.Presentation.ViewModels
 
 		public RelayCommand NavigateBack { get; set; }
 
-		public IceCreamListPageViewModel(MainWindowViewModel mainWindowViewModel)
+		public IceCreamListPageViewModel()
 		{
-			MainWindowViewModel = mainWindowViewModel;
-
 			IceCreams = new List<IceCream>();
 
 			KioskContext kiosk = new KioskContext();
@@ -79,31 +79,34 @@ namespace IceCreamDesktop.Presentation.ViewModels
 			GetAllIceCreams = new GetAllIceCreams(iceCreamRepository);
 
 			NavigateToDetailPage = new RelayCommand(
-				(o) => MainWindowViewModel.Navigate(new IceCreamDetailViewModel(MainWindowViewModel, o as IceCream)),
-				(o) => true
+				(o) => Navigator.Push(new IceCreamDetailViewModel(o as IceCream))
 			);
 
 			NavigateToAddIceCreamPage = new RelayCommand(
-				(o) => MainWindowViewModel.Navigate(new AddIceCreamPageViewModel(MainWindowViewModel)),
-				(o) => true
+				(o) => Navigator.Push(new AddIceCreamPageViewModel())
 			);
 
 			FilterList = new RelayCommand(
-				(o) => Filter = new IceCreamFilter(o.ToString()),
-				(o) => true
+				(o) => Filter = new IceCreamFilter(o.ToString())
 			);
 
 			NavigateBack = new RelayCommand(
-				(o) => MainWindowViewModel.Navigate(new MenuPageViewModel(MainWindowViewModel)),
-				(o) => true
+				(o) => Navigator.Pop()
 			);
-
-			Initialize();
 		}
 
-		private async void Initialize()
+		public override void OnResumed()
 		{
-			IceCreams = await GetAllIceCreams.Call(new GetAllIceCreamsArgs());
+			Application.Current.Dispatcher.BeginInvoke(
+				DispatcherPriority.Background,
+				new Action(async () =>
+				{
+					var temp = await GetAllIceCreams.Call(new GetAllIceCreamsArgs());
+
+					if (temp.Count != IceCreams.Count)
+						IceCreams = temp;
+				})
+			);
 		}
 	}
 }

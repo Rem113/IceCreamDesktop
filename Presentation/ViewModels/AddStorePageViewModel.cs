@@ -8,13 +8,11 @@ using System.Windows;
 
 namespace IceCreamDesktop.Presentation.ViewModels
 {
-	public class AddStorePageViewModel : BaseViewModel, IPageViewModel
+	public class AddStorePageViewModel : PageViewModel
 	{
 		private bool isLoading = false;
 
 		private AddStore AddStore { get; set; }
-
-		private MainWindowViewModel MainWindowViewModel { get; set; }
 
 		public RelayCommand NavigateBack { get; set; }
 
@@ -36,17 +34,13 @@ namespace IceCreamDesktop.Presentation.ViewModels
 		public string TelephoneValue { get; set; }
 		public string WebsiteValue { get; set; }
 
-		public AddStorePageViewModel(MainWindowViewModel mainWindowViewModel)
+		public AddStorePageViewModel()
 		{
-			MainWindowViewModel = mainWindowViewModel;
-
 			KioskContext kiosk = new KioskContext();
 			StoreRepository repository = new StoreRepository(kiosk);
 			AddStore = new AddStore(repository);
 
-			NavigateBack = new RelayCommand(
-				(o) => MainWindowViewModel.Navigate(new StoreListPageViewModel(MainWindowViewModel))
-			);
+			NavigateBack = new RelayCommand((o) => Navigator.Pop());
 
 			AddStoreCommand = new RelayCommand(AddStoreExecute);
 		}
@@ -72,7 +66,7 @@ namespace IceCreamDesktop.Presentation.ViewModels
 
 			result.Match(
 				Left: failure => MessageBox.Show(failure.Message),
-				Right: store => MainWindowViewModel.Navigate(new StoreListPageViewModel(MainWindowViewModel))
+				Right: store => Navigator.Push(new StoreListPageViewModel())
 			).Invoke();
 		}
 	}

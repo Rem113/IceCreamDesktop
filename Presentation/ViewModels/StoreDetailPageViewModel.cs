@@ -12,11 +12,9 @@ using System.Windows;
 
 namespace IceCreamDesktop.Presentation.ViewModels
 {
-	public class StoreDetailPageViewModel : BaseViewModel, IPageViewModel
+	public class StoreDetailPageViewModel : PageViewModel
 	{
 		private Location location;
-
-		private MainWindowViewModel MainWindowViewModel { get; set; }
 
 		public RelayCommand NavigateBack { get; set; }
 
@@ -28,14 +26,11 @@ namespace IceCreamDesktop.Presentation.ViewModels
 
 		public Store Store { get; set; }
 
-		public StoreDetailPageViewModel(MainWindowViewModel mainWindowViewModel, Store store)
+		public StoreDetailPageViewModel(Store store)
 		{
-			MainWindowViewModel = mainWindowViewModel;
 			Store = store;
 
-			NavigateBack = new RelayCommand(
-				(o) => MainWindowViewModel.Navigate(new StoreListPageViewModel(MainWindowViewModel))
-			);
+			NavigateBack = new RelayCommand((o) => Navigator.Pop());
 
 			Initialize();
 		}
