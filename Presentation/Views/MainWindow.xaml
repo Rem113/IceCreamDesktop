@@ -16,7 +16,7 @@
 		Width="1200" Height="900">
 
 	<Window.DataContext>
-		<ViewModel:Navigator />
+		<ViewModel:NavigatorViewModel />
 	</Window.DataContext>
 
 	<Window.Resources>

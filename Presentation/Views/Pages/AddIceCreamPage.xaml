@@ -26,17 +26,17 @@
 			Grid.Row="1"
 			VerticalAlignment="Center">
 			<TextBox
-				Text="{Binding NameValue, Mode=TwoWay}"
+				Text="{Binding NameValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
 				MaterialDesign:HintAssist.Hint="Name"
 				MaterialDesign:HintAssist.IsFloating="True"
 				Margin="24" />
 			<TextBox
-				Text="{Binding BrandValue, Mode=TwoWay}"
+				Text="{Binding BrandValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
 				MaterialDesign:HintAssist.Hint="Brand"
 				MaterialDesign:HintAssist.IsFloating="True"
 				Margin="24" />
 			<TextBox
-				Text="{Binding ImageURLValue, Mode=TwoWay}"
+				Text="{Binding ImageURLValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
 				MaterialDesign:HintAssist.Hint="Image URL"
 				MaterialDesign:HintAssist.IsFloating="True"
 				Margin="24" />

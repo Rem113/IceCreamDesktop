@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace IceCreamDesktop.Presentation.ViewModels.Commands
+namespace IceCreamDesktop.Presentation.Common
 {
 	public class RelayCommand : ICommand
 	{

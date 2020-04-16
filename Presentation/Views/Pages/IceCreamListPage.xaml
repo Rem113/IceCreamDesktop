@@ -7,9 +7,15 @@
 	         xmlns:Controls="clr-namespace:IceCreamDesktop.Presentation.Views.Controls"
              xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
 			 xmlns:MaterialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+			 xmlns:Converters="clr-namespace:IceCreamDesktop.Presentation.Converters"
 			 x:Class="IceCreamDesktop.Presentation.Views.Pages.IceCreamListPage"
              mc:Ignorable="d"
              d:DesignHeight="900" d:DesignWidth="1200">
+
+	<UserControl.Resources>
+		<Converters:TrueToVisibleConverter x:Key="TrueToVisibleConverter" />
+		<Converters:TrueToInvisibleConverter x:Key="TrueToInvisibleConverter" />
+	</UserControl.Resources>
 
 	<Grid>
 		<Grid.RowDefinitions>
@@ -25,22 +31,23 @@
 					MaterialDesign:HintAssist.Hint="Filter"
 					MaterialDesign:HintAssist.IsFloating="True"
 					Width="150"
-					Style="{StaticResource MaterialDesignTextBox}">
-					<TextBox.InputBindings>
-						<KeyBinding Key="Return" Command="{Binding FilterList}" CommandParameter="{Binding Text, ElementName=FilterText}" />
-					</TextBox.InputBindings>
-				</TextBox>
-				<Button
-					Command="{Binding FilterList}"
-					CommandParameter="{Binding Path=Text, ElementName=FilterText}"
-					Content="Filter"
-					Width="80" />
+					Text="{Binding FilterText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+					Style="{StaticResource MaterialDesignTextBox}" />
 			</StackPanel>
 		</StackPanel>
 		<Controls:IceCreamList
 			Grid.Row="1"
 			IceCreams="{Binding DisplayIceCreams}"
+			Visibility="{Binding IsLoading, Converter={StaticResource TrueToInvisibleConverter}}"
 			NavigateCommand="{Binding NavigateToDetailPage}" />
+		<ProgressBar
+			Grid.Row="1"
+			Width="64"
+			HorizontalAlignment="Center"
+			VerticalAlignment="Center"
+			IsIndeterminate="True"
+			Visibility="{Binding IsLoading, Converter={StaticResource TrueToVisibleConverter}}"
+			Style="{StaticResource MaterialDesignCircularProgressBar}" />
 		<Button
 			Grid.Row="1"
 			Command="{Binding NavigateToAddIceCreamPage}"

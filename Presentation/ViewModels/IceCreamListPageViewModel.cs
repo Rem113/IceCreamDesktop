@@ -1,33 +1,22 @@
 ﻿using IceCreamDesktop.Core.Entities;
-using IceCreamDesktop.Data;
-using IceCreamDesktop.Data.Repositories;
 using IceCreamDesktop.Domain.Usecases;
-using IceCreamDesktop.Presentation.ViewModels.Commands;
+using IceCreamDesktop.Presentation.Common;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 
 namespace IceCreamDesktop.Presentation.ViewModels
 {
-	public class IceCreamFilter
-	{
-		public string Name { get; set; }
-
-		public IceCreamFilter(string name)
-		{
-			Name = name;
-		}
-	}
-
 	public class IceCreamListPageViewModel : PageViewModel
 	{
 		private List<IceCream> iceCreams;
 		private List<IceCream> displayIceCreams = new List<IceCream>();
-		private IceCreamFilter filter;
+		private string filterText;
+		private bool isLoading = false;
 
 		private List<IceCream> IceCreams
 		{
@@ -49,20 +38,28 @@ namespace IceCreamDesktop.Presentation.ViewModels
 			}
 		}
 
-		public GetAllIceCreams GetAllIceCreams { get; set; }
-
-		public IceCreamFilter Filter
+		public string FilterText
 		{
-			get => filter;
+			get => filterText;
 			set
 			{
-				filter = value;
-				var temp = new Regex(filter.Name, RegexOptions.IgnoreCase);
+				filterText = value;
+				var temp = new Regex(value, RegexOptions.IgnoreCase);
 				DisplayIceCreams = IceCreams.Where(ic => temp.IsMatch(ic.Name) || temp.IsMatch(ic.Brand)).ToList();
 			}
 		}
 
-		public RelayCommand FilterList { get; set; }
+		public bool IsLoading
+		{
+			get => isLoading;
+			set
+			{
+				isLoading = value;
+				OnPropertyChanged("IsLoading");
+			}
+		}
+
+		public GetAllIceCreams GetAllIceCreams { get; set; }
 
 		public RelayCommand NavigateToDetailPage { get; set; }
 
@@ -74,9 +71,7 @@ namespace IceCreamDesktop.Presentation.ViewModels
 		{
 			IceCreams = new List<IceCream>();
 
-			KioskContext kiosk = new KioskContext();
-			IceCreamRepository iceCreamRepository = new IceCreamRepository(kiosk);
-			GetAllIceCreams = new GetAllIceCreams(iceCreamRepository);
+			GetAllIceCreams = Injector.Resolve<GetAllIceCreams>();
 
 			NavigateToDetailPage = new RelayCommand(
 				(o) => Navigator.Push(new IceCreamDetailViewModel(o as IceCream))
@@ -86,10 +81,6 @@ namespace IceCreamDesktop.Presentation.ViewModels
 				(o) => Navigator.Push(new AddIceCreamPageViewModel())
 			);
 
-			FilterList = new RelayCommand(
-				(o) => Filter = new IceCreamFilter(o.ToString())
-			);
-
 			NavigateBack = new RelayCommand(
 				(o) => Navigator.Pop()
 			);
@@ -97,16 +88,17 @@ namespace IceCreamDesktop.Presentation.ViewModels
 
 		public override void OnResumed()
 		{
-			Application.Current.Dispatcher.BeginInvoke(
-				DispatcherPriority.Background,
-				new Action(async () =>
+			Task.Run(async () =>
 				{
+					IsLoading = true;
+
 					var temp = await GetAllIceCreams.Call(new GetAllIceCreamsArgs());
+
+					IsLoading = false;
 
 					if (temp.Count != IceCreams.Count)
 						IceCreams = temp;
-				})
-			);
+				});
 		}
 	}
 }

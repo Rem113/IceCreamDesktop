@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Windows;
 
-namespace IceCreamDesktop.Presentation
+namespace IceCreamDesktop.Presentation.Common
 {
 	public abstract class BaseViewModel : INotifyPropertyChanged
 	{

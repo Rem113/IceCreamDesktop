@@ -1,4 +1,5 @@
-﻿using IceCreamDesktop.Presentation.ViewModels;
+﻿using IceCreamDesktop.Presentation.Common;
+using IceCreamDesktop.Presentation.ViewModels;
 using IceCreamDesktop.Presentation.Views;
 using System.Windows;
 
@@ -9,5 +10,9 @@ namespace IceCreamDesktop.Presentation
 	/// </summary>
 	public partial class App : Application
 	{
+		public App()
+		{
+			Injector.Init();
+		}
 	}
 }

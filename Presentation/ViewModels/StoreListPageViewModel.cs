@@ -2,7 +2,7 @@
 using IceCreamDesktop.Data;
 using IceCreamDesktop.Data.Repositories;
 using IceCreamDesktop.Domain.Usecases;
-using IceCreamDesktop.Presentation.ViewModels.Commands;
+using IceCreamDesktop.Presentation.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +17,7 @@ namespace IceCreamDesktop.Presentation.ViewModels
 	{
 		private List<Store> stores;
 		private List<Store> displayStores = new List<Store>();
+		private bool isLoading;
 
 		private List<Store> Stores
 		{
@@ -38,6 +39,16 @@ namespace IceCreamDesktop.Presentation.ViewModels
 			}
 		}
 
+		public bool IsLoading
+		{
+			get => isLoading;
+			set
+			{
+				isLoading = value;
+				OnPropertyChanged("IsLoading");
+			}
+		}
+
 		private GetAllStores GetAllStores { get; set; }
 
 		public RelayCommand NavigateToAddStorePage { get; set; }
@@ -48,9 +59,7 @@ namespace IceCreamDesktop.Presentation.ViewModels
 
 		public StoreListPageViewModel()
 		{
-			KioskContext kiosk = new KioskContext();
-			StoreRepository repository = new StoreRepository(kiosk);
-			GetAllStores = new GetAllStores(repository);
+			GetAllStores = Injector.Resolve<GetAllStores>();
 
 			Stores = new List<Store>();
 
@@ -67,16 +76,17 @@ namespace IceCreamDesktop.Presentation.ViewModels
 
 		public override void OnResumed()
 		{
-			Application.Current.Dispatcher.BeginInvoke(
-				DispatcherPriority.Background,
-				new Action(async () =>
+			Task.Run(async () =>
 				{
+					IsLoading = true;
+
 					var temp = await GetAllStores.Call(new GetAllStoresArgs());
+
+					IsLoading = false;
 
 					if (temp.Count != Stores.Count)
 						Stores = temp;
-				})
-			);
+				});
 		}
 	}
 }

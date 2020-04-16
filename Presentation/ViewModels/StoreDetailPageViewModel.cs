@@ -1,6 +1,6 @@
 ﻿using IceCreamDesktop.Core.Entities;
 using IceCreamDesktop.Core.Utils;
-using IceCreamDesktop.Presentation.ViewModels.Commands;
+using IceCreamDesktop.Presentation.Common;
 using MapControl;
 using System;
 using System.Collections.Generic;

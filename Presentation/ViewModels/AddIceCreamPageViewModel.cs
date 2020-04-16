@@ -2,7 +2,7 @@
 using IceCreamDesktop.Data;
 using IceCreamDesktop.Data.Repositories;
 using IceCreamDesktop.Domain.Usecases;
-using IceCreamDesktop.Presentation.ViewModels.Commands;
+using IceCreamDesktop.Presentation.Common;
 using Monad;
 using System;
 using System.Collections.Generic;
@@ -38,13 +38,18 @@ namespace IceCreamDesktop.Presentation.ViewModels
 
 		public AddIceCreamPageViewModel()
 		{
-			KioskContext kiosk = new KioskContext();
-			IceCreamRepository repository = new IceCreamRepository(kiosk);
-			AddIceCream = new AddIceCream(repository);
+			AddIceCream = Injector.Resolve<AddIceCream>();
 
 			NavigateBack = new RelayCommand((o) => Navigator.Pop());
 
-			AddIceCreamCommand = new RelayCommand(AddIceCreamExecute);
+			AddIceCreamCommand = new RelayCommand(AddIceCreamExecute, AddIceCreamCanExecute);
+		}
+
+		private bool AddIceCreamCanExecute(object o)
+		{
+			return !string.IsNullOrEmpty(NameValue)
+				&& !string.IsNullOrEmpty(BrandValue)
+				&& !string.IsNullOrEmpty(ImageURLValue);
 		}
 
 		private async void AddIceCreamExecute(object o)
@@ -65,7 +70,7 @@ namespace IceCreamDesktop.Presentation.ViewModels
 
 			result.Match(
 				Left: failure => MessageBox.Show(failure.Message),
-				Right: iceCream => Navigator.Push(new IceCreamListPageViewModel())
+				Right: iceCream => Navigator.Pop()
 			).Invoke();
 		}
 	}

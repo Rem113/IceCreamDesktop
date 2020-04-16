@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IceCreamDesktop.Presentation
+namespace IceCreamDesktop.Presentation.Common
 {
 	public abstract class PageViewModel : BaseViewModel
 	{
-		protected Navigator Navigator { get; set; }
+		protected NavigatorViewModel Navigator { get; set; }
 
-		public void SetNavigator(Navigator navigator)
+		public void SetNavigator(NavigatorViewModel navigator)
 		{
 			Navigator = navigator;
 		}

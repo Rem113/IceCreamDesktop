@@ -2,8 +2,9 @@
 using IceCreamDesktop.Data;
 using IceCreamDesktop.Data.Repositories;
 using IceCreamDesktop.Domain.Usecases;
-using IceCreamDesktop.Presentation.ViewModels.Commands;
+using IceCreamDesktop.Presentation.Common;
 using Monad;
+using System;
 using System.Windows;
 
 namespace IceCreamDesktop.Presentation.ViewModels
@@ -36,13 +37,23 @@ namespace IceCreamDesktop.Presentation.ViewModels
 
 		public AddStorePageViewModel()
 		{
-			KioskContext kiosk = new KioskContext();
-			StoreRepository repository = new StoreRepository(kiosk);
-			AddStore = new AddStore(repository);
+			AddStore = Injector.Resolve<AddStore>();
 
 			NavigateBack = new RelayCommand((o) => Navigator.Pop());
 
-			AddStoreCommand = new RelayCommand(AddStoreExecute);
+			AddStoreCommand = new RelayCommand(
+				AddStoreExecute,
+				AddStoreCanExecute
+			);
+		}
+
+		private bool AddStoreCanExecute(object o)
+		{
+			return !string.IsNullOrEmpty(NameValue)
+				&& !string.IsNullOrEmpty(AddressValue)
+				&& !string.IsNullOrEmpty(ImageURLValue)
+				&& !string.IsNullOrEmpty(TelephoneValue)
+				&& !string.IsNullOrEmpty(WebsiteValue);
 		}
 
 		private async void AddStoreExecute(object o)
@@ -66,7 +77,7 @@ namespace IceCreamDesktop.Presentation.ViewModels
 
 			result.Match(
 				Left: failure => MessageBox.Show(failure.Message),
-				Right: store => Navigator.Push(new StoreListPageViewModel())
+				Right: store => Navigator.Pop()
 			).Invoke();
 		}
 	}

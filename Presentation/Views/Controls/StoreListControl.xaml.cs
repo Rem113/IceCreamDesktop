@@ -1,5 +1,5 @@
 ﻿using IceCreamDesktop.Core.Entities;
-using IceCreamDesktop.Presentation.ViewModels.Commands;
+using IceCreamDesktop.Presentation.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
