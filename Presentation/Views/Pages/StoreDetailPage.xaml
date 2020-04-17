@@ -4,8 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 			 xmlns:MaterialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-			 xmlns:controls="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
-             xmlns:local="clr-namespace:IceCreamDesktop.Presentation.Views.Pages"
+			 xmlns:Controls="clr-namespace:IceCreamDesktop.Presentation.Views.Controls"
              mc:Ignorable="d">
 	<Grid>
 		<Grid.RowDefinitions>
@@ -55,6 +54,10 @@
 				CommandParameter="{Binding Store.Address}"
 				Content="View on map" />
 		</StackPanel>
+		<Controls:IceCreamList
+			Grid.Row="2"
+			IceCreams="{Binding IceCreams}"
+			NavigateCommand="{Binding NavigateToProductDetailPage}" />
 		<Button HorizontalAlignment="Left"
 				VerticalAlignment="Top"
 				Margin="32"

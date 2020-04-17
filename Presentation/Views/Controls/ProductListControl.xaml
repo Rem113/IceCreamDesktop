@@ -1,0 +1,42 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:IceCreamDesktop.Presentation.Views.Controls" xmlns:Pages="clr-namespace:IceCreamDesktop.Presentation.Views.Pages" x:Class="IceCreamDesktop.Presentation.Views.Controls.ProductListControl">
+	<ScrollViewer DataContext="{Binding Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:ProductListControl}}}">
+		<ItemsControl ItemsSource="{Binding Products}">
+			<ItemsControl.ItemTemplate>
+				<DataTemplate>
+					<Button Command="{Binding NavigateCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:ProductListControl}}}"
+							CommandParameter="{Binding}"
+							Style="{StaticResource MaterialDesignToolForegroundButton}"
+							Height="200">
+						<DockPanel Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+							<Image
+								Margin="16"
+								Source="{Binding IceCream.ImageUrl}"
+								Stretch="UniformToFill"
+								Height="120"
+								Width="120"
+								DockPanel.Dock="Left">
+								<Image.Clip>
+									<EllipseGeometry Center="60, 60" RadiusX="60" RadiusY="60" />
+								</Image.Clip>
+							</Image>
+							<StackPanel Orientation="Vertical" VerticalAlignment="Center">
+								<TextBlock Margin="4" Text="{Binding IceCream.Name}" Style="{StaticResource MaterialDesignHeadline6TextBlock}" TextWrapping="Wrap" />
+								<TextBlock Margin="4" Text="{Binding IceCream.Brand}" Style="{StaticResource MaterialDesignCaptionTextBlock}" />
+							</StackPanel>
+						</DockPanel>
+					</Button>
+				</DataTemplate>
+			</ItemsControl.ItemTemplate>
+			<ItemsControl.ItemsPanel>
+				<ItemsPanelTemplate>
+					<UniformGrid Columns="3" />
+				</ItemsPanelTemplate>
+			</ItemsControl.ItemsPanel>
+		</ItemsControl>
+	</ScrollViewer>
+</UserControl>

@@ -58,6 +58,7 @@
     <Compile Include="Usecases\IceCream\GetAllIceCream.cs" />
     <Compile Include="Usecases\IceCream\RemoveIceCream.cs" />
     <Compile Include="Usecases\Product\AddProduct.cs" />
+    <Compile Include="Usecases\Product\GetProductsForStore.cs" />
     <Compile Include="Usecases\Store\AddStore.cs" />
     <Compile Include="Usecases\Store\GetAllStore.cs" />
     <Compile Include="Usecases\Store\RemoveStore.cs" />

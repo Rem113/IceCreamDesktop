@@ -24,6 +24,13 @@
 				<EllipseGeometry Center="100, 100" RadiusX="100" RadiusY="100" />
 			</Image.Clip>
 		</Image>
+		<Button
+			Grid.Row="0"
+			Margin="140, 140, 0, 0"
+			Command="{Binding RemoveIceCreamCommand}"
+			Style="{StaticResource MaterialDesignFloatingActionButton}">
+			<MaterialDesign:PackIcon Kind="Clear" />
+		</Button>
 		<StackPanel Grid.Row="1">
 			<TextBlock
 				Text="{Binding IceCream.Name}"

@@ -19,6 +19,7 @@ namespace IceCreamDesktop.Presentation.Common
 
 			builder.RegisterType<IceCreamRepository>().As<IIceCreamRepository>();
 			builder.RegisterType<StoreRepository>().As<IStoreRepository>();
+			builder.RegisterType<ProductRepository>().As<IProductRepository>();
 
 			// Domain
 			builder.RegisterType<AddIceCream>();
@@ -26,6 +27,7 @@ namespace IceCreamDesktop.Presentation.Common
 			builder.RegisterType<RemoveIceCream>();
 
 			builder.RegisterType<AddProduct>();
+			builder.RegisterType<GetProductsForStore>();
 
 			builder.RegisterType<AddStore>();
 			builder.RegisterType<GetAllStores>();
