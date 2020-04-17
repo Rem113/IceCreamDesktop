@@ -35,11 +35,11 @@
 					Style="{StaticResource MaterialDesignTextBox}" />
 			</StackPanel>
 		</StackPanel>
-		<Controls:IceCreamList
+		<Controls:IceCreamListControl
 			Grid.Row="1"
 			IceCreams="{Binding DisplayIceCreams}"
 			Visibility="{Binding IsLoading, Converter={StaticResource TrueToInvisibleConverter}}"
-			NavigateCommand="{Binding NavigateToDetailPage}" />
+			Command="{Binding NavigateToDetailPage}" />
 		<ProgressBar
 			Grid.Row="1"
 			Width="64"

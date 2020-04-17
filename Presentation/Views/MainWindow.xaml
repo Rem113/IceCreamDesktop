@@ -11,6 +11,7 @@
 		TextElement.FontWeight="Medium"
 		TextElement.FontSize="14"
 		TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+		WindowStartupLocation="CenterScreen"
 		Background="{DynamicResource MaterialDesignPaper}"
 		FontFamily="{MaterialDesign:MaterialDesignFont}"
 		Width="1200" Height="900">

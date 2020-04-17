@@ -143,8 +143,8 @@
     <Compile Include="Views\Controls\ProductListControl.xaml.cs">
       <DependentUpon>ProductListControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\IceCreamList.xaml.cs">
-      <DependentUpon>IceCreamList.xaml</DependentUpon>
+    <Compile Include="Views\Controls\IceCreamListControl.xaml.cs">
+      <DependentUpon>IceCreamListControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Controls\ProductListItemControl.xaml.cs">
       <DependentUpon>ProductListItemControl.xaml</DependentUpon>
@@ -196,7 +196,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls\IceCreamList.xaml">
+    <Page Include="Views\Controls\IceCreamListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

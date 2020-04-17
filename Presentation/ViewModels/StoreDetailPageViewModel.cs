@@ -70,7 +70,7 @@ namespace IceCreamDesktop.Presentation.ViewModels
 			);
 
 			NavigateToAddProductPage = new RelayCommand(
-				(o) => Navigator.Push(new AddProductPageViewModel())
+				(o) => Navigator.Push(new AddProductPageViewModel(o as Store))
 			);
 		}
 

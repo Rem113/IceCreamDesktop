@@ -1,8 +1,4 @@
-﻿using Microsoft.Maps.MapControl.WPF;
-using System.Diagnostics;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Navigation;
+﻿using System.Windows.Controls;
 
 namespace IceCreamDesktop.Presentation.Views.Pages
 {

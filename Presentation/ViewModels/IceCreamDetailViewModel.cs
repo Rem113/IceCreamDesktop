@@ -1,5 +1,4 @@
 ﻿using IceCreamDesktop.Core.Entities;
-using IceCreamDesktop.Core.Failures;
 using IceCreamDesktop.Domain.Usecases;
 using IceCreamDesktop.Presentation.Common;
 using Monad;
