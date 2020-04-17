@@ -19,7 +19,7 @@ namespace IceCreamDesktop.Data.Repositories
 			Kiosk = kiosk;
 		}
 
-		public Task<Either<Failure, Product>> AddProductToStore(Product product)
+		public Task<Product> AddProductToStore(Product product)
 		{
 			throw new NotImplementedException();
 		}
@@ -27,6 +27,16 @@ namespace IceCreamDesktop.Data.Repositories
 		public Task<List<Product>> GetProductsOfStore(int storeId)
 		{
 			return Task.FromResult(Kiosk.Products.Where(product => product.Store.Id == storeId).ToList());
+		}
+
+		public async Task RemoveProduct(int productId)
+		{
+			var product = Kiosk.Products.Where(product => product.Id == productId).FirstOrDefault();
+
+			if (product == default(Product)) throw new ArgumentException("There is no product with this id!");
+
+			Kiosk.Products.Remove(product);
+			await Kiosk.SaveChangesAsync();
 		}
 	}
 }

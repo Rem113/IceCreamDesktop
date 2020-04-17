@@ -4,12 +4,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:IceCreamDesktop.Presentation.Views.Controls"
-             xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="IceCreamDesktop.Presentation.Views.Controls.RatingControl"
+			 x:Class="IceCreamDesktop.Presentation.Views.Controls.RatingControl"
              mc:Ignorable="d">
 
 	<StackPanel Orientation="Vertical"
 				DataContext="{Binding Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:RatingControl}}}">
-		<local:FiveStarsControl Count="{Binding Rating}" />
-		<TextBlock Text="{Binding Text}" />
+		<local:FiveStarsControl
+			Margin="8"
+			Count="{Binding Rating}" />
+		<TextBlock
+			Text="{Binding Text}"
+			FontSize="30" />
 	</StackPanel>
 </UserControl>

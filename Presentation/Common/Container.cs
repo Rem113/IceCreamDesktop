@@ -15,23 +15,28 @@ namespace IceCreamDesktop.Presentation.Common
 			var builder = new ContainerBuilder();
 
 			// Data
-			builder.RegisterType<KioskContext>().AsSelf();
+			builder.RegisterType<KioskContext>().SingleInstance().AsSelf();
 
-			builder.RegisterType<IceCreamRepository>().As<IIceCreamRepository>();
-			builder.RegisterType<StoreRepository>().As<IStoreRepository>();
-			builder.RegisterType<ProductRepository>().As<IProductRepository>();
+			builder.RegisterType<IceCreamRepository>().SingleInstance().As<IIceCreamRepository>();
+			builder.RegisterType<StoreRepository>().SingleInstance().As<IStoreRepository>();
+			builder.RegisterType<ProductRepository>().SingleInstance().As<IProductRepository>();
+			builder.RegisterType<ReviewRepository>().SingleInstance().As<IReviewRepository>();
 
 			// Domain
-			builder.RegisterType<AddIceCream>();
-			builder.RegisterType<GetAllIceCreams>();
-			builder.RegisterType<RemoveIceCream>();
+			builder.RegisterType<AddIceCream>().SingleInstance();
+			builder.RegisterType<GetAllIceCreams>().SingleInstance();
+			builder.RegisterType<RemoveIceCream>().SingleInstance();
 
-			builder.RegisterType<AddProduct>();
-			builder.RegisterType<GetProductsForStore>();
+			builder.RegisterType<AddProduct>().SingleInstance();
+			builder.RegisterType<GetProductsForStore>().SingleInstance();
 
-			builder.RegisterType<AddStore>();
-			builder.RegisterType<GetAllStores>();
-			builder.RegisterType<RemoveStore>();
+			builder.RegisterType<AddStore>().SingleInstance();
+			builder.RegisterType<GetAllStores>().SingleInstance();
+			builder.RegisterType<RemoveStore>().SingleInstance();
+
+			builder.RegisterType<GetReviewForProduct>().SingleInstance();
+			builder.RegisterType<AddReview>().SingleInstance();
+			builder.RegisterType<RemoveProduct>().SingleInstance();
 
 			Container = builder.Build();
 		}

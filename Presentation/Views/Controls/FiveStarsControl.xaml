@@ -8,10 +8,10 @@
              mc:Ignorable="d">
 
 	<StackPanel x:Name="Container" Orientation="Horizontal">
-		<MaterialDesign:PackIcon Kind="Star" />
-		<MaterialDesign:PackIcon Kind="Star" />
-		<MaterialDesign:PackIcon Kind="Star" />
-		<MaterialDesign:PackIcon Kind="Star" />
-		<MaterialDesign:PackIcon Kind="Star" />
+		<MaterialDesign:PackIcon Kind="Star" Width="30" Height="30" Foreground="Brown" />
+		<MaterialDesign:PackIcon Kind="Star" Width="30" Height="30" Foreground="Brown" />
+		<MaterialDesign:PackIcon Kind="Star" Width="30" Height="30" Foreground="Brown" />
+		<MaterialDesign:PackIcon Kind="Star" Width="30" Height="30" Foreground="Brown" />
+		<MaterialDesign:PackIcon Kind="Star" Width="30" Height="30" Foreground="Brown" />
 	</StackPanel>
 </UserControl>

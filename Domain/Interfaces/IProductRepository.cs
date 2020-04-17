@@ -8,8 +8,10 @@ namespace IceCreamDesktop.Domain.Interfaces
 {
 	public interface IProductRepository
 	{
-		Task<Either<Failure, Product>> AddProductToStore(Product product);
+		Task<Product> AddProductToStore(Product product);
 
 		Task<List<Product>> GetProductsOfStore(int storeId);
+
+		Task RemoveProduct(int productId);
 	}
 }

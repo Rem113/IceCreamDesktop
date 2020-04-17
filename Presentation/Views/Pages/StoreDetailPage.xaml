@@ -54,10 +54,16 @@
 				CommandParameter="{Binding Store.Address}"
 				Content="View on map" />
 		</StackPanel>
-		<Controls:IceCreamList
-			Grid.Row="2"
-			IceCreams="{Binding IceCreams}"
-			NavigateCommand="{Binding NavigateToProductDetailPage}" />
+		<DockPanel Grid.Row="2">
+			<TextBlock
+				DockPanel.Dock="Top"
+				Style="{StaticResource MaterialDesignHeadline2TextBlock}"
+				TextAlignment="Center"
+				Text="Our products" />
+			<Controls:IceCreamList
+				IceCreams="{Binding IceCreams}"
+				NavigateCommand="{Binding NavigateToProductDetailPage}" />
+		</DockPanel>
 		<Button HorizontalAlignment="Left"
 				VerticalAlignment="Top"
 				Margin="32"

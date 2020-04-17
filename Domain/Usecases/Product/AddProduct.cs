@@ -25,7 +25,9 @@ namespace IceCreamDesktop.Domain.Usecases
 			if (product.Store == null)
 				return () => new InvalidInputFailure("Please specify a store");
 
-			return await Repository.AddProductToStore(product);
+			var result = await Repository.AddProductToStore(product);
+
+			return () => result;
 		}
 	}
 

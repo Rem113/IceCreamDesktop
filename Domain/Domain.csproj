@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Interfaces\IIceCreamRepository.cs" />
     <Compile Include="Interfaces\IProductRepository.cs" />
+    <Compile Include="Interfaces\IReviewRepository.cs" />
     <Compile Include="Interfaces\IStoreRepository.cs" />
     <Compile Include="Interfaces\IUsecase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -59,6 +60,9 @@
     <Compile Include="Usecases\IceCream\RemoveIceCream.cs" />
     <Compile Include="Usecases\Product\AddProduct.cs" />
     <Compile Include="Usecases\Product\GetProductsForStore.cs" />
+    <Compile Include="Usecases\Product\RemoveProduct.cs" />
+    <Compile Include="Usecases\Review\AddReview.cs" />
+    <Compile Include="Usecases\Review\GetReviewForProduct.cs" />
     <Compile Include="Usecases\Store\AddStore.cs" />
     <Compile Include="Usecases\Store\GetAllStore.cs" />
     <Compile Include="Usecases\Store\RemoveStore.cs" />
