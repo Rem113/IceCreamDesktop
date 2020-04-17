@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="IceCreamDesktop.Presentation.Views.Pages.MapPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:IceCreamDesktop.Presentation.Views.Pages" xmlns:controls="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF" xmlns:MaterialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+			 mc:Ignorable="d">
+	<controls:Map
+			local:MapHelper.Center="{Binding Location}"
+			ZoomLevel="16"
+			Grid.Row="2"
+			CredentialsProvider="hCitUxJK3IW1if9qC1DJ~iRHsZluzm1HBR2I5eu9cAQ~AoqIa1TgYbRM5O8Eux2VQmuJu-IB7qAvQfcPDIGbXYyTEPxyWB2EaTbThjIXs-Dc">
+		<controls:Pushpin
+				Location="{Binding Location}" />
+		<Button HorizontalAlignment="Left"
+				VerticalAlignment="Top"
+				Margin="32"
+				Command="{Binding NavigateBack}"
+				Style="{StaticResource MaterialDesignFloatingActionAccentButton}">
+			<MaterialDesign:PackIcon Kind="ArrowLeft" />
+		</Button>
+	</controls:Map>
+</UserControl>

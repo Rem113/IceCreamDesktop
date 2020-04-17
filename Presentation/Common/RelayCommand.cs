@@ -29,5 +29,10 @@ namespace IceCreamDesktop.Presentation.Common
 		{
 			execute(parameter);
 		}
+
+		public void RaiseCanExecuteChanged()
+		{
+			CommandManager.InvalidateRequerySuggested();
+		}
 	}
 }

@@ -129,6 +129,7 @@
     <Compile Include="ViewModels\AddStorePageViewModel.cs" />
     <Compile Include="ViewModels\IceCreamDetailViewModel.cs" />
     <Compile Include="ViewModels\IceCreamListPageViewModel.cs" />
+    <Compile Include="ViewModels\MapPageViewModel.cs" />
     <Compile Include="ViewModels\MenuPageViewModel.cs" />
     <Compile Include="ViewModels\StoreDetailPageViewModel.cs" />
     <Compile Include="ViewModels\StoreListPageViewModel.cs" />
@@ -158,6 +159,9 @@
     </Compile>
     <Compile Include="Views\Pages\IceCreamListPage.xaml.cs">
       <DependentUpon>IceCreamListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\MapPage.xaml.cs">
+      <DependentUpon>MapPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\ProductListPage.xaml.cs">
       <DependentUpon>ProductListPage.xaml</DependentUpon>
@@ -220,6 +224,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\IceCreamListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\MapPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

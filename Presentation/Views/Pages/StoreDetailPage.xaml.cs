@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿using Microsoft.Maps.MapControl.WPF;
+using System.Diagnostics;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 
@@ -12,12 +14,6 @@ namespace IceCreamDesktop.Presentation.Views.Pages
 		public StoreDetailPage()
 		{
 			InitializeComponent();
-		}
-
-		private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
-		{
-			Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
-			e.Handled = true;
 		}
 	}
 }

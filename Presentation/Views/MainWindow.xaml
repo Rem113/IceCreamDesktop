@@ -41,6 +41,9 @@
 		<DataTemplate DataType="{x:Type ViewModel:StoreDetailPageViewModel}">
 			<Page:StoreDetailPage />
 		</DataTemplate>
+		<DataTemplate DataType="{x:Type ViewModel:MapPageViewModel}">
+			<Page:MapPage />
+		</DataTemplate>
 	</Window.Resources>
 
 	<ContentPresenter Content="{Binding CurrentPage}" />
