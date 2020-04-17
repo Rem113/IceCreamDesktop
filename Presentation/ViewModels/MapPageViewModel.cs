@@ -23,13 +23,9 @@ namespace IceCreamDesktop.Presentation.ViewModels
 			}
 		}
 
-		public RelayCommand NavigateBack { get; set; }
-
 		public MapPageViewModel(Location location)
 		{
 			Location = location;
-
-			NavigateBack = new RelayCommand((o) => Navigator.Pop());
 		}
 	}
 }

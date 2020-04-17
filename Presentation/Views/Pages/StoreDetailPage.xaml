@@ -67,9 +67,18 @@
 		<Button HorizontalAlignment="Left"
 				VerticalAlignment="Top"
 				Margin="32"
-				Command="{Binding NavigateBack}"
+				Command="{Binding Navigator.Back}"
 				Style="{StaticResource MaterialDesignFloatingActionAccentButton}">
 			<MaterialDesign:PackIcon Kind="ArrowLeft" />
+		</Button>
+		<Button
+			Grid.Row="2"
+			HorizontalAlignment="Right"
+			VerticalAlignment="Bottom"
+			Margin="32"
+			Command="{Binding NavigateToAddProductPage}"
+			Style="{StaticResource MaterialDesignFloatingActionAccentButton}">
+			<MaterialDesign:PackIcon Kind="Add" />
 		</Button>
 	</Grid>
 </UserControl>

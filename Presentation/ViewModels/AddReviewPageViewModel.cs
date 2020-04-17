@@ -22,8 +22,6 @@ namespace IceCreamDesktop.Presentation.ViewModels
 		public string RatingValue { get; set; }
 		public string ReviewValue { get; set; }
 
-		public RelayCommand NavigateBack { get; set; }
-
 		public RelayCommand AddReviewCommand { get; set; }
 
 		private AddReview AddReview { get; set; }
@@ -43,8 +41,6 @@ namespace IceCreamDesktop.Presentation.ViewModels
 			Product = product;
 
 			AddReview = Injector.Resolve<AddReview>();
-
-			NavigateBack = new RelayCommand((o) => Navigator.Pop());
 
 			AddReviewCommand = new RelayCommand(AddReviewExecute, AddReviewCanExecute);
 		}

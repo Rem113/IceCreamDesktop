@@ -13,8 +13,6 @@ namespace IceCreamDesktop.Presentation.ViewModels
 
 		private AddStore AddStore { get; set; }
 
-		public RelayCommand NavigateBack { get; set; }
-
 		public RelayCommand AddStoreCommand { get; set; }
 
 		public bool IsLoading
@@ -36,8 +34,6 @@ namespace IceCreamDesktop.Presentation.ViewModels
 		public AddStorePageViewModel()
 		{
 			AddStore = Injector.Resolve<AddStore>();
-
-			NavigateBack = new RelayCommand((o) => Navigator.Pop());
 
 			AddStoreCommand = new RelayCommand(
 				AddStoreExecute,

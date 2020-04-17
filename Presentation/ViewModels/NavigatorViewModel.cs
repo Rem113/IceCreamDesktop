@@ -7,6 +7,8 @@ namespace IceCreamDesktop.Presentation.ViewModels
 	{
 		private Stack<PageViewModel> History { get; } = new Stack<PageViewModel>();
 
+		public RelayCommand Back { get; set; }
+
 		public PageViewModel CurrentPage
 		{
 			get => History.Peek();
@@ -34,6 +36,7 @@ namespace IceCreamDesktop.Presentation.ViewModels
 
 		public NavigatorViewModel()
 		{
+			Back = new RelayCommand((o) => Pop());
 			Push(new MenuPageViewModel());
 		}
 	}

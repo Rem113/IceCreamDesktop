@@ -4,7 +4,7 @@ namespace IceCreamDesktop.Presentation.Common
 {
 	public abstract class PageViewModel : BaseViewModel
 	{
-		protected NavigatorViewModel Navigator { get; set; }
+		public NavigatorViewModel Navigator { get; set; }
 
 		public void SetNavigator(NavigatorViewModel navigator)
 		{

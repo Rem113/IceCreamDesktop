@@ -62,8 +62,6 @@ namespace IceCreamDesktop.Presentation.ViewModels
 
 		public RelayCommand NavigateToAddIceCreamPage { get; set; }
 
-		public RelayCommand NavigateBack { get; set; }
-
 		public IceCreamListPageViewModel()
 		{
 			IceCreams = new List<IceCream>();
@@ -76,10 +74,6 @@ namespace IceCreamDesktop.Presentation.ViewModels
 
 			NavigateToAddIceCreamPage = new RelayCommand(
 				(o) => Navigator.Push(new AddIceCreamPageViewModel())
-			);
-
-			NavigateBack = new RelayCommand(
-				(o) => Navigator.Pop()
 			);
 		}
 

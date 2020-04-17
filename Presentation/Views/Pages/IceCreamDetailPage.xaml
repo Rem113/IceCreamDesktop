@@ -62,7 +62,7 @@
 		<Button HorizontalAlignment="Left"
 				VerticalAlignment="Top"
 				Margin="32"
-				Command="{Binding NavigateBack}"
+				Command="{Binding Navigator.Back}"
 				Style="{StaticResource MaterialDesignFloatingActionAccentButton}">
 			<MaterialDesign:PackIcon Kind="ArrowLeft" />
 		</Button>

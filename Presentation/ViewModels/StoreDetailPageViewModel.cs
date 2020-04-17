@@ -16,8 +16,6 @@ namespace IceCreamDesktop.Presentation.ViewModels
 		private List<IceCream> iceCreams = new List<IceCream>();
 		private List<Product> products = new List<Product>();
 
-		public RelayCommand NavigateBack { get; set; }
-
 		public Store Store { get; set; }
 
 		public Location Location { get; set; }
@@ -27,6 +25,8 @@ namespace IceCreamDesktop.Presentation.ViewModels
 		public RelayCommand OpenBrowserLink { get; set; }
 
 		public RelayCommand NavigateToProductDetailPage { get; set; }
+
+		public RelayCommand NavigateToAddProductPage { get; set; }
 
 		public List<IceCream> IceCreams
 		{
@@ -56,8 +56,6 @@ namespace IceCreamDesktop.Presentation.ViewModels
 
 			GetProductsForStore = Injector.Resolve<GetProductsForStore>();
 
-			NavigateBack = new RelayCommand((o) => Navigator.Pop());
-
 			NavigateToMapPage = new RelayCommand(
 				(o) => Navigator.Push(new MapPageViewModel(Location)),
 				(o) => Location != null
@@ -69,6 +67,10 @@ namespace IceCreamDesktop.Presentation.ViewModels
 
 			NavigateToProductDetailPage = new RelayCommand(
 				(o) => Navigator.Push(new ProductDetailPageViewModel(Products.Where(product => product.IceCream.Id == ((IceCream)o).Id).First()))
+			);
+
+			NavigateToAddProductPage = new RelayCommand(
+				(o) => Navigator.Push(new AddProductPageViewModel())
 			);
 		}
 

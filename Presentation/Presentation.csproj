@@ -127,6 +127,7 @@
     <Compile Include="Converters\TrueToInvisibleConverter.cs" />
     <Compile Include="Converters\TrueToVisibleConverter.cs" />
     <Compile Include="ViewModels\AddIceCreamPageViewModel.cs" />
+    <Compile Include="ViewModels\AddProductPageViewModel.cs" />
     <Compile Include="ViewModels\AddReviewPageViewModel.cs" />
     <Compile Include="ViewModels\AddStorePageViewModel.cs" />
     <Compile Include="ViewModels\IceCreamDetailViewModel.cs" />
@@ -156,6 +157,9 @@
     </Compile>
     <Compile Include="Views\Pages\AddIceCreamPage.xaml.cs">
       <DependentUpon>AddIceCreamPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\AddProductPage.xaml.cs">
+      <DependentUpon>AddProductPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\AddReviewPage.xaml.cs">
       <DependentUpon>AddReviewPage.xaml</DependentUpon>
@@ -225,6 +229,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\Pages\AddIceCreamPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\AddProductPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

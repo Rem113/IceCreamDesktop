@@ -39,8 +39,6 @@ namespace IceCreamDesktop.Presentation.ViewModels
 
 		private GetReviewForProduct GetReviewForProduct { get; set; }
 
-		public RelayCommand NavigateBack { get; set; }
-
 		public RelayCommand NavigateToAddReviewPage { get; set; }
 
 		public RelayCommand RemoveProductCommand { get; set; }
@@ -51,8 +49,6 @@ namespace IceCreamDesktop.Presentation.ViewModels
 
 			RemoveProduct = Injector.Resolve<RemoveProduct>();
 			GetReviewForProduct = Injector.Resolve<GetReviewForProduct>();
-
-			NavigateBack = new RelayCommand((o) => Navigator.Pop());
 
 			NavigateToAddReviewPage = new RelayCommand((o) => Navigator.Push(new AddReviewPageViewModel(Product)));
 
@@ -81,7 +77,7 @@ namespace IceCreamDesktop.Presentation.ViewModels
 							},
 							Nothing: () =>
 							{
-								NavigateBack.Execute(null);
+								Navigator.Pop();
 								return Unit.Default;
 							})
 						.Invoke();

@@ -15,15 +15,11 @@ namespace IceCreamDesktop.Presentation.ViewModels
 
 		private RemoveIceCream RemoveIceCream { get; set; }
 
-		public RelayCommand NavigateBack { get; set; }
-
 		public RelayCommand RemoveIceCreamCommand { get; set; }
 
 		public IceCreamDetailViewModel(IceCream iceCream)
 		{
 			IceCream = iceCream;
-
-			NavigateBack = new RelayCommand((o) => Navigator.Pop());
 
 			RemoveIceCream = Injector.Resolve<RemoveIceCream>();
 
@@ -52,7 +48,7 @@ namespace IceCreamDesktop.Presentation.ViewModels
 							},
 							Nothing: () =>
 							{
-								NavigateBack.Execute(null);
+								Navigator.Pop();
 								return Unit.Default;
 							})
 						.Invoke();

@@ -48,8 +48,6 @@ namespace IceCreamDesktop.Presentation.ViewModels
 
 		public RelayCommand NavigateToDetailPage { get; set; }
 
-		public RelayCommand NavigateBack { get; set; }
-
 		public StoreListPageViewModel()
 		{
 			GetAllStores = Injector.Resolve<GetAllStores>();
@@ -63,8 +61,6 @@ namespace IceCreamDesktop.Presentation.ViewModels
 			NavigateToDetailPage = new RelayCommand(
 				(o) => Navigator.Push(new StoreDetailPageViewModel(o as Store))
 			);
-
-			NavigateBack = new RelayCommand((o) => Navigator.Pop());
 		}
 
 		public override void OnResumed()

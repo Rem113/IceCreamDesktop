@@ -28,13 +28,10 @@ namespace IceCreamDesktop.Presentation.ViewModels
 		}
 
 		public RelayCommand AddIceCreamCommand { get; set; }
-		public RelayCommand NavigateBack { get; set; }
 
 		public AddIceCreamPageViewModel()
 		{
 			AddIceCream = Injector.Resolve<AddIceCream>();
-
-			NavigateBack = new RelayCommand((o) => Navigator.Pop());
 
 			AddIceCreamCommand = new RelayCommand(AddIceCreamExecute, AddIceCreamCanExecute);
 		}
