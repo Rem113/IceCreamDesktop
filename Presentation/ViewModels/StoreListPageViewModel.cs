@@ -1,15 +1,8 @@
 ﻿using IceCreamDesktop.Core.Entities;
-using IceCreamDesktop.Data;
-using IceCreamDesktop.Data.Repositories;
 using IceCreamDesktop.Domain.Usecases;
 using IceCreamDesktop.Presentation.Common;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Threading;
 
 namespace IceCreamDesktop.Presentation.ViewModels
 {

@@ -3,7 +3,6 @@ using IceCreamDesktop.Data;
 using IceCreamDesktop.Data.Repositories;
 using IceCreamDesktop.Domain.Interfaces;
 using IceCreamDesktop.Domain.Usecases;
-using System.Linq;
 
 namespace IceCreamDesktop.Presentation.Common
 {

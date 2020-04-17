@@ -1,13 +1,10 @@
 ﻿using IceCreamDesktop.Core.Entities;
 using IceCreamDesktop.Domain.Usecases;
 using IceCreamDesktop.Presentation.Common;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Threading;
 
 namespace IceCreamDesktop.Presentation.ViewModels
 {

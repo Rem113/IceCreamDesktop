@@ -1,7 +1,6 @@
 ﻿using IceCreamDesktop.Core.Entities;
 using IceCreamDesktop.Domain.Interfaces;
 using System;
-using System.Collections.Generic;
 using System.Reflection;
 using System.Threading.Tasks;
 using Telerik.JustMock;
