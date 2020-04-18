@@ -16,9 +16,11 @@ namespace IceCreamDesktop.Data.Repositories
 			Kiosk = kiosk;
 		}
 
-		public Task<Product> AddProductToStore(Product product)
+		public async Task<Product> AddProductToStore(Product product)
 		{
-			throw new NotImplementedException();
+			Kiosk.Products.Add(product);
+			await Kiosk.SaveChangesAsync();
+			return product;
 		}
 
 		public Task<List<Product>> GetProductsOfStore(int storeId)

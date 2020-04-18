@@ -10,6 +10,8 @@ namespace IceCreamDesktop.Domain.Interfaces
 	{
 		Task<List<IceCream>> GetAllIceCreams();
 
+		Task<List<IceCream>> GetStoreMissingIceCream(int storeId);
+
 		Task<Either<Failure, IceCream>> AddIceCream(IceCream iceCream);
 
 		Task<Option<Failure>> RemoveIceCream(int id);

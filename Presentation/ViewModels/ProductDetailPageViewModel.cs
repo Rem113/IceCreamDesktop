@@ -31,7 +31,9 @@ namespace IceCreamDesktop.Presentation.ViewModels
 
 		public double Average
 		{
-			get => Math.Round((double)Reviews.Aggregate(0, (acc, r) => acc + (int)r.Rating) / Reviews.Count, 2);
+			get => Reviews.Any()
+				? Math.Round((double)Reviews.Aggregate(0, (acc, r) => acc + (int)r.Rating) / Reviews.Count, 2)
+				: 5.0;
 		}
 
 		private RemoveProduct RemoveProduct { get; set; }

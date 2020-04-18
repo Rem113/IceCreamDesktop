@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:IceCreamDesktop.Presentation.Views.Pages"
 			 xmlns:MaterialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-			 xmlns:Converters="clr-namespace:IceCreamDesktop.Presentation.Converters"
+			 xmlns:Converters="clr-namespace:IceCreamDesktop.Presentation.Converters" xmlns:Controls="clr-namespace:IceCreamDesktop.Presentation.Views.Controls"
 			 mc:Ignorable="d">
 	<UserControl.Resources>
 		<Converters:TrueToVisibleConverter x:Key="TrueToVisibleConverter" />
@@ -16,28 +16,30 @@
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
 			<RowDefinition Height="2*" />
 		</Grid.RowDefinitions>
 		<StackPanel Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">
 			<TextBlock Text="Add Product" FontSize="64" />
 		</StackPanel>
+		<Controls:IceCreamToStoreControl Grid.Row="1" />
 		<StackPanel
 			MaxWidth="500"
-			Grid.Row="1"
+			Grid.Row="2"
 			VerticalAlignment="Center">
 			<TextBox
-				Text="{Binding NameValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-				MaterialDesign:HintAssist.Hint="Name"
+				Text="{Binding DescriptionValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+				MaterialDesign:HintAssist.Hint="Description"
 				MaterialDesign:HintAssist.IsFloating="True"
 				Margin="24" />
 			<TextBox
-				Text="{Binding BrandValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-				MaterialDesign:HintAssist.Hint="Brand"
+				Text="{Binding PriceValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+				MaterialDesign:HintAssist.Hint="Price"
 				MaterialDesign:HintAssist.IsFloating="True"
 				Margin="24" />
 			<TextBox
-				Text="{Binding ImageURLValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-				MaterialDesign:HintAssist.Hint="Image URL"
+				Text="{Binding BarcodeValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+				MaterialDesign:HintAssist.Hint="Barcode"
 				MaterialDesign:HintAssist.IsFloating="True"
 				Margin="24" />
 			<Button
@@ -54,12 +56,6 @@
 				Visibility="{Binding IsLoading, Converter={StaticResource TrueToVisibleConverter}}"
 				Style="{StaticResource MaterialDesignCircularProgressBar}" />
 		</StackPanel>
-		<Button HorizontalAlignment="Left"
-				VerticalAlignment="Top"
-				Margin="32"
-				Command="{Binding Navigator.Back}"
-				Style="{StaticResource MaterialDesignFloatingActionAccentButton}">
-			<MaterialDesign:PackIcon Kind="ArrowLeft" />
-		</Button>
+		<Controls:BackButtonControl />
 	</Grid>
 </UserControl>

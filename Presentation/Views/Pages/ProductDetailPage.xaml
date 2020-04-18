@@ -97,13 +97,6 @@
 				</ItemsControl.ItemTemplate>
 			</ItemsControl>
 		</ScrollViewer>
-		<Button HorizontalAlignment="Left"
-				VerticalAlignment="Top"
-				Margin="32"
-				Command="{Binding Navigator.Back}"
-				Style="{StaticResource MaterialDesignFloatingActionAccentButton}">
-			<MaterialDesign:PackIcon Kind="ArrowLeft" />
-		</Button>
 		<Button
 			Grid.Row="2"
 			HorizontalAlignment="Right"
@@ -113,5 +106,6 @@
 			Style="{StaticResource MaterialDesignFloatingActionAccentButton}">
 			<MaterialDesign:PackIcon Kind="CommentAdd" />
 		</Button>
+		<Controls:BackButtonControl />
 	</Grid>
 </UserControl>

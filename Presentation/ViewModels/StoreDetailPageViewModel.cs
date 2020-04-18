@@ -2,6 +2,7 @@
 using IceCreamDesktop.Core.Utils;
 using IceCreamDesktop.Domain.Usecases;
 using IceCreamDesktop.Presentation.Common;
+using IceCreamDesktop.Presentation.Views.Pages;
 using Microsoft.Maps.MapControl.WPF;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -26,7 +27,7 @@ namespace IceCreamDesktop.Presentation.ViewModels
 
 		public RelayCommand NavigateToProductDetailPage { get; set; }
 
-		public RelayCommand NavigateToAddProductPage { get; set; }
+		public RelayCommand NavigateToPickIceCreamPage { get; set; }
 
 		public List<IceCream> IceCreams
 		{
@@ -69,8 +70,8 @@ namespace IceCreamDesktop.Presentation.ViewModels
 				(o) => Navigator.Push(new ProductDetailPageViewModel(Products.Where(product => product.IceCream.Id == ((IceCream)o).Id).First()))
 			);
 
-			NavigateToAddProductPage = new RelayCommand(
-				(o) => Navigator.Push(new AddProductPageViewModel(o as Store))
+			NavigateToPickIceCreamPage = new RelayCommand(
+				(o) => Navigator.Push(new PickIceCreamPageViewModel(o as Store))
 			);
 		}
 

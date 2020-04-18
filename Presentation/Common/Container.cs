@@ -25,6 +25,7 @@ namespace IceCreamDesktop.Presentation.Common
 			// Domain
 			builder.RegisterType<AddIceCream>().SingleInstance();
 			builder.RegisterType<GetAllIceCreams>().SingleInstance();
+			builder.RegisterType<GetStoreMissingIceCream>().SingleInstance();
 			builder.RegisterType<RemoveIceCream>().SingleInstance();
 
 			builder.RegisterType<AddProduct>().SingleInstance();
@@ -32,6 +33,7 @@ namespace IceCreamDesktop.Presentation.Common
 
 			builder.RegisterType<AddStore>().SingleInstance();
 			builder.RegisterType<GetAllStores>().SingleInstance();
+			builder.RegisterType<GetStoreSellingIceCream>().SingleInstance();
 			builder.RegisterType<RemoveStore>().SingleInstance();
 
 			builder.RegisterType<GetReviewForProduct>().SingleInstance();

@@ -51,6 +51,9 @@
 		<DataTemplate DataType="{x:Type ViewModel:AddReviewPageViewModel}">
 			<Page:AddReviewPage />
 		</DataTemplate>
+		<DataTemplate DataType="{x:Type ViewModel:PickIceCreamPageViewModel}">
+			<Page:PickIceCreamPage />
+		</DataTemplate>
 		<DataTemplate DataType="{x:Type ViewModel:AddProductPageViewModel}">
 			<Page:AddProductPage />
 		</DataTemplate>

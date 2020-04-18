@@ -64,22 +64,16 @@
 				IceCreams="{Binding IceCreams}"
 				Command="{Binding NavigateToProductDetailPage}" />
 		</DockPanel>
-		<Button HorizontalAlignment="Left"
-				VerticalAlignment="Top"
-				Margin="32"
-				Command="{Binding Navigator.Back}"
-				Style="{StaticResource MaterialDesignFloatingActionAccentButton}">
-			<MaterialDesign:PackIcon Kind="ArrowLeft" />
-		</Button>
 		<Button
 			Grid.Row="2"
 			HorizontalAlignment="Right"
 			VerticalAlignment="Bottom"
 			Margin="32"
-			Command="{Binding NavigateToAddProductPage}"
+			Command="{Binding NavigateToPickIceCreamPage}"
 			CommandParameter="{Binding Store}"
 			Style="{StaticResource MaterialDesignFloatingActionAccentButton}">
 			<MaterialDesign:PackIcon Kind="Add" />
 		</Button>
+		<Controls:BackButtonControl />
 	</Grid>
 </UserControl>

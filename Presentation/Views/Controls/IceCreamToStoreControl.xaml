@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="IceCreamDesktop.Presentation.Views.Controls.IceCreamToStoreControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:IceCreamDesktop.Presentation.Views.Controls" xmlns:MaterialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+			 mc:Ignorable="d">
+	<Grid MaxWidth="500">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="2*" />
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="2*" />
+		</Grid.ColumnDefinitions>
+		<StackPanel VerticalAlignment="Center" Grid.Column="0">
+			<Image
+				Grid.Row="0"
+				Margin="16"
+				Source="{Binding IceCream.ImageUrl}"
+				Stretch="UniformToFill"
+				Height="120"
+				Width="120"
+				DockPanel.Dock="Left">
+				<Image.Clip>
+					<EllipseGeometry Center="60, 60" RadiusX="60" RadiusY="60" />
+				</Image.Clip>
+			</Image>
+			<TextBlock TextAlignment="Center" Text="{Binding IceCream.Name}" />
+		</StackPanel>
+		<MaterialDesign:PackIcon
+			Grid.Column="1"
+			Width="50"
+			Height="50"
+			HorizontalAlignment="Center"
+			VerticalAlignment="Center"
+			Kind="ArrowRight" />
+		<StackPanel VerticalAlignment="Center" Grid.Column="2">
+			<Image
+				Grid.Row="0"
+				Margin="16"
+				Source="{Binding Store.ImageUrl}"
+				Stretch="UniformToFill"
+				Height="120"
+				Width="120"
+				DockPanel.Dock="Left">
+				<Image.Clip>
+					<EllipseGeometry Center="60, 60" RadiusX="60" RadiusY="60" />
+				</Image.Clip>
+			</Image>
+			<TextBlock TextAlignment="Center" Text="{Binding Store.Name}" />
+		</StackPanel>
+	</Grid>
+</UserControl>

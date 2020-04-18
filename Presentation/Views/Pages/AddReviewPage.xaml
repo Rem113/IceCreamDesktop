@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:IceCreamDesktop.Presentation.Views.Pages" xmlns:Converters="clr-namespace:IceCreamDesktop.Presentation.Converters" xmlns:MaterialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:IceCreamDesktop.Presentation.Views.Pages" xmlns:Converters="clr-namespace:IceCreamDesktop.Presentation.Converters" xmlns:MaterialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:Controls="clr-namespace:IceCreamDesktop.Presentation.Views.Controls"
 			 mc:Ignorable="d">
 	<UserControl.Resources>
 		<Converters:TrueToVisibleConverter x:Key="TrueToVisibleConverter" />
@@ -47,12 +47,6 @@
 				Visibility="{Binding IsLoading, Converter={StaticResource TrueToVisibleConverter}}"
 				Style="{StaticResource MaterialDesignCircularProgressBar}" />
 		</StackPanel>
-		<Button HorizontalAlignment="Left"
-				VerticalAlignment="Top"
-				Margin="32"
-				Command="{Binding Navigator.Back}"
-				Style="{StaticResource MaterialDesignFloatingActionAccentButton}">
-			<MaterialDesign:PackIcon Kind="ArrowLeft" />
-		</Button>
+		<Controls:BackButtonControl />
 	</Grid>
 </UserControl>

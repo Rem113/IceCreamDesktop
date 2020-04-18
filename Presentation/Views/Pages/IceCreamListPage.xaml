@@ -57,12 +57,6 @@
 			Style="{StaticResource MaterialDesignFloatingActionAccentButton}">
 			<MaterialDesign:PackIcon Kind="Add" />
 		</Button>
-		<Button HorizontalAlignment="Left"
-				VerticalAlignment="Top"
-				Margin="32"
-				Command="{Binding Navigator.Back}"
-				Style="{StaticResource MaterialDesignFloatingActionAccentButton}">
-			<MaterialDesign:PackIcon Kind="ArrowLeft" />
-		</Button>
+		<Controls:BackButtonControl />
 	</Grid>
 </UserControl>

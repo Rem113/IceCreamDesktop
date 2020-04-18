@@ -134,11 +134,18 @@
     <Compile Include="ViewModels\IceCreamListPageViewModel.cs" />
     <Compile Include="ViewModels\MapPageViewModel.cs" />
     <Compile Include="ViewModels\MenuPageViewModel.cs" />
+    <Compile Include="ViewModels\PickIceCreamPageViewModel.cs" />
     <Compile Include="ViewModels\ProductDetailPageViewModel.cs" />
     <Compile Include="ViewModels\StoreDetailPageViewModel.cs" />
     <Compile Include="ViewModels\StoreListPageViewModel.cs" />
+    <Compile Include="Views\Controls\BackButtonControl.xaml.cs">
+      <DependentUpon>BackButtonControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controls\FiveStarsControl.xaml.cs">
       <DependentUpon>FiveStarsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\IceCreamToStoreControl.xaml.cs">
+      <DependentUpon>IceCreamToStoreControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Controls\ProductListControl.xaml.cs">
       <DependentUpon>ProductListControl.xaml</DependentUpon>
@@ -176,6 +183,9 @@
     <Compile Include="Views\Pages\MapPage.xaml.cs">
       <DependentUpon>MapPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\PickIceCreamPage.xaml.cs">
+      <DependentUpon>PickIceCreamPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\ProductDetailPage.xaml.cs">
       <DependentUpon>ProductDetailPage.xaml</DependentUpon>
     </Compile>
@@ -188,7 +198,15 @@
     <Compile Include="Views\Pages\StoreListPage.xaml.cs">
       <DependentUpon>StoreListPage.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\Controls\BackButtonControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Controls\FiveStarsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\IceCreamToStoreControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -253,6 +271,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\MapPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\PickIceCreamPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

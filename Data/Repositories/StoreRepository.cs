@@ -39,6 +39,11 @@ namespace IceCreamDesktop.Data.Repositories
 			return Task.FromResult(new List<Store>());
 		}
 
+		public Task<List<Store>> GetStoreSellingIceCream(int iceCreamId)
+		{
+			return Task.FromResult(Kiosk.Stores.Where(store => store.IceCreams.Any(ic => ic.Id == iceCreamId)).ToList());
+		}
+
 		public async Task<Option<Failure>> RemoveStore(int id)
 		{
 			var matches = Kiosk.Stores.Where(store => id == store.Id).ToList();

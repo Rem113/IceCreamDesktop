@@ -1,4 +1,5 @@
 ﻿using IceCreamDesktop.Presentation.Common;
+using System;
 using System.Collections.Generic;
 
 namespace IceCreamDesktop.Presentation.ViewModels
@@ -31,6 +32,15 @@ namespace IceCreamDesktop.Presentation.ViewModels
 
 			OnPropertyChanged("CurrentPage");
 
+			CurrentPage.OnResumed();
+		}
+
+		public void PopUntil(Predicate<PageViewModel> predicate)
+		{
+			while (!predicate(CurrentPage))
+				History.Pop().OnDestroyed();
+
+			OnPropertyChanged("CurrentPage");
 			CurrentPage.OnResumed();
 		}
 

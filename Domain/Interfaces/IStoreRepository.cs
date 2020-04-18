@@ -10,6 +10,8 @@ namespace IceCreamDesktop.Domain.Interfaces
 	{
 		Task<List<Store>> GetAllStores();
 
+		Task<List<Store>> GetStoreSellingIceCream(int iceCreamId);
+
 		Task<Either<Failure, Store>> AddStore(Store store);
 
 		Task<Option<Failure>> RemoveStore(int storeId);

@@ -51,5 +51,15 @@ namespace IceCreamDesktop.Data.Repositories
 
 			return Option.Nothing<Failure>();
 		}
+
+		public Task<List<IceCream>> GetStoreMissingIceCream(int storeId)
+		{
+			var iceCreams = Kiosk.IceCreams.ToList();
+			var products = Kiosk.Products.Where(product => product.Store.Id == storeId).ToList();
+
+			products.ForEach(p => iceCreams.Remove(p.IceCream));
+
+			return Task.FromResult(iceCreams);
+		}
 	}
 }

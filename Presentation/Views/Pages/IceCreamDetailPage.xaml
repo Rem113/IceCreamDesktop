@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-			 xmlns:MaterialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             mc:Ignorable="d"
+			 xmlns:MaterialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:Controls="clr-namespace:IceCreamDesktop.Presentation.Views.Controls"
+			 mc:Ignorable="d"
              d:DesignHeight="900" d:DesignWidth="1200">
 	<Grid>
 		<Grid.RowDefinitions>
@@ -59,12 +59,6 @@
 					Text="{Binding IceCream.Fat}" />
 			</StackPanel>
 		</StackPanel>
-		<Button HorizontalAlignment="Left"
-				VerticalAlignment="Top"
-				Margin="32"
-				Command="{Binding Navigator.Back}"
-				Style="{StaticResource MaterialDesignFloatingActionAccentButton}">
-			<MaterialDesign:PackIcon Kind="ArrowLeft" />
-		</Button>
+		<Controls:BackButtonControl />
 	</Grid>
 </UserControl>
