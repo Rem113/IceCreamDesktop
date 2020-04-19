@@ -11,6 +11,6 @@ namespace IceCreamDesktop.Core.Entities
 		public string Telephone { get; set; }
 		public string Website { get; set; }
 
-		public virtual List<Product> IceCreams { get; set; }
+		public virtual List<Product> Products { get; set; }
 	}
 }

@@ -4,6 +4,7 @@ using IceCreamDesktop.Domain.Interfaces;
 using Monad;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -41,7 +42,8 @@ namespace IceCreamDesktop.Data.Repositories
 
 		public Task<List<Store>> GetStoreSellingIceCream(int iceCreamId)
 		{
-			return Task.FromResult(Kiosk.Stores.Where(store => store.IceCreams.Any(ic => ic.Id == iceCreamId)).ToList());
+			return Task.FromResult(Kiosk.Stores
+				.Where(store => store.Products.Any(p => p.IceCream.Id == iceCreamId)).ToList());
 		}
 
 		public async Task<Option<Failure>> RemoveStore(int id)

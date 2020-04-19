@@ -44,13 +44,18 @@
 				Text="{Binding Product.IceCream.Brand}"
 				TextAlignment="Center"
 				Style="{StaticResource MaterialDesignHeadline6TextBlock}" />
+			<TextBlock
+				Text="{Binding Product.Description}"
+				TextAlignment="Center"
+				Margin="8"
+				Style="{StaticResource MaterialDesignSubtitle1TextBlock}" />
 			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 				<TextBlock
 					VerticalAlignment="Center"
 					Text="Barcode : " />
 				<TextBlock
 					VerticalAlignment="Center"
-					Text="{Binding Product.BarCode}"
+					Text="{Binding Product.Barcode}"
 					TextAlignment="Center"
 					Style="{StaticResource MaterialDesignHeadline6TextBlock}" />
 			</StackPanel>

@@ -28,7 +28,7 @@ namespace IceCreamDesktop.Domain.Usecases
 
 			var products = await Repository.GetProductsOfStore(args.Product.Store.Id);
 
-			if (products.Any(p => p.BarCode == args.Product.BarCode))
+			if (products.Any(p => p.Barcode == args.Product.Barcode))
 				return () => new InvalidInputFailure("There is already another product with this barcode");
 
 			var result = await Repository.AddProductToStore(product);

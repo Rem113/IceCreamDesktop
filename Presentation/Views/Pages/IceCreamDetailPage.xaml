@@ -59,6 +59,10 @@
 					Text="{Binding IceCream.Fat}" />
 			</StackPanel>
 		</StackPanel>
+		<Controls:StoreListControl
+			Grid.Row="2"
+			Stores="{Binding Stores}"
+			NavigateCommand="{Binding NavigateToStoreDetailPage}" />
 		<Controls:BackButtonControl />
 	</Grid>
 </UserControl>

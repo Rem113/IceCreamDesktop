@@ -53,7 +53,7 @@ namespace IceCreamDesktop.Presentation.ViewModels
 					{
 						Description = DescriptionValue,
 						Price = float.Parse(PriceValue),
-						BarCode = BarcodeValue,
+						Barcode = BarcodeValue,
 						IceCream = IceCream,
 						Store = Store
 					};

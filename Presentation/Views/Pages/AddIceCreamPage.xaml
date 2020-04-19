@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:IceCreamDesktop.Presentation.Views.Pages"
 			 xmlns:MaterialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:Converters="clr-namespace:IceCreamDesktop.Presentation.Converters" x:Class="IceCreamDesktop.Presentation.Views.Pages.AddIceCreamPage"
+             xmlns:Converters="clr-namespace:IceCreamDesktop.Presentation.Converters" xmlns:Controls="clr-namespace:IceCreamDesktop.Presentation.Views.Controls" x:Class="IceCreamDesktop.Presentation.Views.Pages.AddIceCreamPage"
              mc:Ignorable="d"
              d:DesignHeight="900" d:DesignWidth="1200">
 	<UserControl.Resources>
@@ -54,12 +54,6 @@
 				Visibility="{Binding IsLoading, Converter={StaticResource TrueToVisibleConverter}}"
 				Style="{StaticResource MaterialDesignCircularProgressBar}" />
 		</StackPanel>
-		<Button HorizontalAlignment="Left"
-				VerticalAlignment="Top"
-				Margin="32"
-				Command="{Binding Navigator.Back}"
-				Style="{StaticResource MaterialDesignFloatingActionAccentButton}">
-			<MaterialDesign:PackIcon Kind="ArrowLeft" />
-		</Button>
+		<Controls:BackButtonControl />
 	</Grid>
 </UserControl>
